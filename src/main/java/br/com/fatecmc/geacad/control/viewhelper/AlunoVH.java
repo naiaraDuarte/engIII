@@ -17,7 +17,7 @@ public class AlunoVH implements IViewHelper {
         String ra =     request.getParameter("ra");
         int id_turma =  ParameterParser.toInt(request.getParameter("turma"));
         String nome =   request.getParameter("nome");
-        String rg =     request.getParameter("rg");
+        String telefone =     request.getParameter("telefone");
         String cpf =    request.getParameter("cpf");
         Date dt_nasc =  ParameterParser.toDate(request.getParameter("datanasc"));
         String sexo =   request.getParameter("sexo");
@@ -26,7 +26,8 @@ public class AlunoVH implements IViewHelper {
         Turma turma  = new Turma();
         turma.setId(id_turma);
         
-        Aluno aluno = new Aluno( ra, turma, nome, rg, cpf, dt_nasc, sexo, id_aluno);
+        
+        Aluno aluno = new Aluno( ra, turma, nome, telefone, cpf, dt_nasc, sexo, id_aluno);
         return aluno;
     }
 

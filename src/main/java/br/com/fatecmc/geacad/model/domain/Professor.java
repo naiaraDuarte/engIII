@@ -10,16 +10,31 @@ public class Professor extends Pessoa {
     public Professor() {
     }
 
-    public Professor(String titulacao, Endereco endereco, String nome, String rg, String cpf, Date data_nascimento, String sexo) {
-        super(nome, rg, cpf, data_nascimento, sexo);
+    public Professor(String titulacao, Endereco endereco, Disciplina disciplina) {
         this.titulacao = titulacao;
         this.endereco = endereco;
+        this.disciplina = disciplina;
     }
 
-    public Professor(String titulacao, Endereco endereco, String nome, String rg, String cpf, Date data_nascimento, String sexo, int id) {
-        super(nome, rg, cpf, data_nascimento, sexo, id);
+    public Professor(String titulacao, Endereco endereco, Disciplina disciplina, String nome, String telefone, String cpf, Date data_nascimento, String sexo) {
+        super(nome, telefone, cpf, data_nascimento, sexo);
         this.titulacao = titulacao;
         this.endereco = endereco;
+        this.disciplina = disciplina;
+    }
+
+    public Professor(String titulacao, Endereco endereco, Disciplina disciplina, String nome, String telefone, String cpf, Date data_nascimento, String sexo, int id) {
+        super(nome, telefone, cpf, data_nascimento, sexo, id);
+        this.titulacao = titulacao;
+        this.endereco = endereco;
+        this.disciplina = disciplina;
+    }
+
+    public Professor(String titulacao, Endereco endereco, String nome, String telefone, String cpf, Date data_nascimento, String sexo, int id) {
+        super(nome, telefone, cpf, data_nascimento, sexo, id);
+        this.titulacao = titulacao;
+        this.endereco = endereco;
+        this.disciplina = disciplina;
     }
 
     public String getTitulacao() {
@@ -37,14 +52,15 @@ public class Professor extends Pessoa {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
- public Disciplina getDisciplina() {
+
+    public Disciplina getDisciplina() {
         return disciplina;
     }
 
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
-    }    
-    
-    
+    }
+
+        
        
 }

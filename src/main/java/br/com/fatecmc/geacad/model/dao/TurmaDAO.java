@@ -32,7 +32,6 @@ public class TurmaDAO implements IDAO {
                 stmt.setString(1, ((Turma) entidade).getNome());
                 stmt.setString(2, ((Turma) entidade).getAno());                
                 stmt.setString(3, ((Turma) entidade).getPeriodo());
-                //preciso arrumar isso
                 //stmt.set(4, ((Turma) entidade).getDisciplinas().get(1));
 
                 stmt.executeUpdate();

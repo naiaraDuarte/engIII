@@ -30,6 +30,13 @@ public class Aluno extends Pessoa {
         this.endereco = endereco;
     }
 
+    public Aluno(String ra, Turma turma, String nome, String telefone, String cpf, Date data_nascimento, String sexo, int id) {
+        super(nome, telefone, cpf, data_nascimento, sexo, id);
+        this.ra = ra;
+        this.turma = turma;
+        this.endereco = endereco;
+    }
+
     public String getRa() {
         return ra;
     }
