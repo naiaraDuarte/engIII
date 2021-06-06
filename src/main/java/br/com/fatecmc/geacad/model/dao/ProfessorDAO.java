@@ -10,16 +10,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ProfessorDAO  {
+public class ProfessorDAO  implements IDAO{
     private Connection conn;
 
-    public int salvar(EntidadeDominio entidade) {
+    @Override
+    public int salvar(EntidadeDominio entidade){
         int id = 0;
         try {
-            this.conn = ConnectionConstructor.getConnectionPostgres();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         String sql = "INSERT INTO professores(nome, cpf, telefone, sexo, formacao, fk_endereco, data_nasc, fk_disciplina) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -38,8 +37,7 @@ public class ProfessorDAO  {
                 stmt.setObject(6, ((Professor) entidade).getEndereco());
                 stmt.setDate(7, (Date) ((Professor) entidade).getData_nascimento());
                 stmt.setObject(7, ((Professor) entidade).getDisciplina());
-                              
-                
+                                              
                 stmt.executeUpdate();
                 
                 ResultSet rs = stmt.getGeneratedKeys();
@@ -55,12 +53,11 @@ public class ProfessorDAO  {
         return id;
     }
 
-    /*public boolean alterar(EntidadeDominio entidade) {
+    @Override
+    public boolean alterar(EntidadeDominio entidade) {
         try {
-            this.conn = ConnectionConstructor.getConnectionPostgres();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         String sql = "UPDATE professores SET salario=?, titulacao=?, pessoas_id_pessoa=? WHERE id_professor=?";
@@ -70,9 +67,14 @@ public class ProfessorDAO  {
         if(entidade instanceof Professor){
             try {
                 stmt = conn.prepareStatement(sql);
-                stmt.setDouble(1, ((Professor) entidade).getSalario());
-                stmt.setString(2, ((Professor) entidade).getTitulacao());
-                stmt.setInt(3, ((Professor) entidade).getId_pessoa());
+                stmt.setString(1, ((Professor) entidade).getNome());
+                stmt.setString(2, ((Professor) entidade).getCpf());
+                stmt.setString(3, ((Professor) entidade).getTelefone());
+                stmt.setString(4, ((Professor) entidade).getSexo());                
+                stmt.setString(5, ((Professor) entidade).getTitulacao());
+                stmt.setObject(6, ((Professor) entidade).getEndereco());
+                stmt.setDate(7, (Date) ((Professor) entidade).getData_nascimento());
+                stmt.setObject(7, ((Professor) entidade).getDisciplina());
                 stmt.setInt(4, entidade.getId());
 
                 if(stmt.executeUpdate() == 1) return true;
@@ -87,7 +89,11 @@ public class ProfessorDAO  {
 
     @Override
     public boolean excluir(int id) {
-        this.conn = ConnectionConstructor.getConnection();
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String sql = "DELETE FROM professores WHERE id_professor=?";
 
         PreparedStatement stmt = null;
@@ -107,8 +113,12 @@ public class ProfessorDAO  {
     
     @Override
     public List consultar() {
-        this.conn = ConnectionConstructor.getConnection();
-        String sql = "SELECT * FROM professores LEFT JOIN pessoas ON pessoas_id_pessoa = id_pessoa";
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "SELECT * FROM professores LEFT JOIN pessoas ON pessoas_id_professor = id_professor";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -122,13 +132,10 @@ public class ProfessorDAO  {
                 Professor professor = new Professor();
 
                 professor.setId(rs.getInt("id_professor"));
-                professor.setSalario(rs.getDouble("salario"));
                 professor.setTitulacao(rs.getString("titulacao"));
-                professor.setId_pessoa(rs.getInt("pessoas_id_pessoa"));
                 professor.setNome(rs.getString("nome"));
-                professor.setTelefone(rs.getString("rg"));
+                professor.setTelefone(rs.getString("telefone"));
                 professor.setCpf(rs.getString("cpf"));
-                professor.setEmail(rs.getString("email"));
                 professor.setData_nascimento(rs.getDate("data_nascimento"));
                 professor.setSexo(rs.getString("sexo"));
                 
@@ -146,8 +153,12 @@ public class ProfessorDAO  {
     
     @Override
     public List consultar(int id) {
-        this.conn = ConnectionConstructor.getConnection();
-        String sql = "SELECT * FROM professores LEFT JOIN pessoas ON pessoas_id_pessoa = id_pessoa WHERE id_professor=?";
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }//acho que isso ta errado
+        String sql = "SELECT * FROM professores LEFT JOIN pessoas ON pessoas_id_professor = id_professor WHERE id_professor=?";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -163,13 +174,10 @@ public class ProfessorDAO  {
                 Professor professor = new Professor();
 
                 professor.setId(rs.getInt("id_professor"));
-                professor.setSalario(rs.getDouble("salario"));
-                professor.setTitulacao(rs.getString("titulacao"));
-                professor.setId_pessoa(rs.getInt("pessoas_id_pessoa"));
+                professor.setTitulacao(rs.getString("titulacao"));;
                 professor.setNome(rs.getString("nome"));
-                professor.setTelefone(rs.getString("rg"));
+                professor.setTelefone(rs.getString("telefone"));
                 professor.setCpf(rs.getString("cpf"));
-                professor.setEmail(rs.getString("email"));
                 professor.setData_nascimento(rs.getDate("data_nascimento"));
                 professor.setSexo(rs.getString("sexo"));
                 
@@ -183,6 +191,6 @@ public class ProfessorDAO  {
             ConnectionConstructor.closeConnection(conn, stmt, rs);
         }
         return null;
-    }*/
+    }
     
 }

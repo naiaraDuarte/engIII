@@ -13,7 +13,7 @@ public class ConnectionConstructor {
     private static final String USER = "postgres";
     private static final String PASS = "postgres";
     
-    public static Connection getConnectionPostgres() throws ClassNotFoundException, SQLException {
+    public static Connection getConnection() throws ClassNotFoundException, SQLException {
         try {
             Class.forName(DRIVER);
             return DriverManager.getConnection(URL, USER, PASS);

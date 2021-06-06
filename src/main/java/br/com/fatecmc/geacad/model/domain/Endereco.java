@@ -1,6 +1,6 @@
 package br.com.fatecmc.geacad.model.domain;
 
-public class Endereco {
+public class Endereco extends EntidadeDominio {
     private String logradouro;
     private String numero;
     private Estado estado;

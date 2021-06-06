@@ -1,11 +1,13 @@
 package br.com.fatecmc.geacad.model.dao;
 
-import br.com.fatecmc.geacad.model.domain.Curso;
+import br.com.fatecmc.geacad.model.domain.Endereco;
 import br.com.fatecmc.geacad.model.domain.EntidadeDominio;
 import br.com.fatecmc.geacad.util.ConnectionConstructor;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EnderecoDAO implements IDAO {
     private Connection conn;
@@ -13,20 +15,24 @@ public class EnderecoDAO implements IDAO {
     @Override
     public int salvar(EntidadeDominio entidade) {
         int id = 0;
-        this.conn = ConnectionConstructor.getConnection();
-        String sql = "INSERT INTO cursos(nome, turno, descricao, duracao) VALUES(?, ?, ?, ?)";
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "INSERT INTO endereco(logradouro, numero, cidade, estado)) VALUES(?, ?, ?, ?)";
 
         PreparedStatement stmt = null;
         
-        if(entidade instanceof Curso){
+        if(entidade instanceof Endereco){
             try {
                 conn.setAutoCommit(false);
                 
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                stmt.setString(1, ((Curso) entidade).getNome());
-                stmt.setString(2, ((Curso) entidade).getTurno());
-                stmt.setString(3, ((Curso) entidade).getDescricao());
-                stmt.setInt(4, ((Curso) entidade).getDuracao());
+                stmt.setString(1, ((Endereco) entidade).getLogradouro());
+                stmt.setString(2, ((Endereco) entidade).getNumero());
+                stmt.setObject(3, ((Endereco) entidade).getCidade());
+                stmt.setObject(4, ((Endereco) entidade).getEstado());
 
                 stmt.executeUpdate();
                 
@@ -45,18 +51,22 @@ public class EnderecoDAO implements IDAO {
 
     @Override
     public boolean alterar(EntidadeDominio entidade) {
-        this.conn = ConnectionConstructor.getConnection();
-        String sql = "UPDATE cursos SET nome=?, turno=?, descricao=?, duracao=? WHERE id_curso=?";
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "UPDATE cursos SET logradouro=?, numero=?, cidade=?, estado=? WHERE id_endereco=?";
 
         PreparedStatement stmt = null;
         
-        if(entidade instanceof Curso){
+        if(entidade instanceof Endereco){
             try {
                 stmt = conn.prepareStatement(sql);
-                stmt.setString(1, ((Curso) entidade).getNome());
-                stmt.setString(2, ((Curso) entidade).getTurno());
-                stmt.setString(3, ((Curso) entidade).getDescricao());
-                stmt.setInt(4, ((Curso) entidade).getDuracao());
+                stmt.setString(1, ((Endereco) entidade).getLogradouro());
+                stmt.setString(2, ((Endereco) entidade).getNumero());
+                stmt.setObject(3, ((Endereco) entidade).getCidade());
+                stmt.setObject(4, ((Endereco) entidade).getEstado());
                 stmt.setInt(5, entidade.getId());
 
                 if(stmt.executeUpdate() == 1) return true;
@@ -71,8 +81,12 @@ public class EnderecoDAO implements IDAO {
 
     @Override
     public boolean excluir(int id) {
-        this.conn = ConnectionConstructor.getConnection();
-        String sql = "DELETE FROM cursos WHERE id_curso=?";
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "DELETE FROM cursos WHERE id_endereco=?";
 
         PreparedStatement stmt = null;
 
@@ -91,30 +105,34 @@ public class EnderecoDAO implements IDAO {
     
     @Override
     public List consultar() {
-        this.conn = ConnectionConstructor.getConnection();
-        String sql = "SELECT * FROM cursos";
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "SELECT * FROM endereco";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<Curso> cursos = new ArrayList<>();
+        List<Endereco> enderecos = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
             
             while(rs.next()) {
-                Curso curso = new Curso();
+                Endereco endereco = new Endereco();
                 
-                curso.setId(rs.getInt("id_curso"));
-                curso.setNome(rs.getString("nome"));
-                curso.setTurno(rs.getString("turno"));
-                curso.setDescricao(rs.getString("descricao"));
-                curso.setDuracao(rs.getInt("duracao"));
+                endereco.setId(rs.getInt("id_endereco"));
+                endereco.setLogradouro(rs.getString("logradouro"));
+                endereco.setNumero(rs.getString("numero"));
+                //endereco.setCidade(rs.getString("cidade"));
+                //endereco.setDuracao(rs.getInt("duracao"));
                 
-                cursos.add(curso);
+                enderecos.add(endereco);
             }
                 
-            return cursos;
+            return enderecos;
         } catch (SQLException ex) {
             System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
         } finally {
@@ -125,13 +143,17 @@ public class EnderecoDAO implements IDAO {
     
     @Override
     public List consultar(int id) {
-        this.conn = ConnectionConstructor.getConnection();
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String sql = "SELECT * FROM cursos WHERE id_curso=?";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<Curso> cursos = new ArrayList<>();
+        List<Endereco> enderecos = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -139,18 +161,18 @@ public class EnderecoDAO implements IDAO {
             rs = stmt.executeQuery();
             
             while(rs.next()) {
-                Curso curso = new Curso();
+                Endereco endereco = new Endereco();
                 
-                curso.setId(rs.getInt("id_curso"));
-                curso.setNome(rs.getString("nome"));
-                curso.setTurno(rs.getString("turno"));
-                curso.setDescricao(rs.getString("descricao"));
-                curso.setDuracao(rs.getInt("duracao"));
+                endereco.setId(rs.getInt("id_endereco"));
+                endereco.setLogradouro(rs.getString("logradouro"));
+                endereco.setNumero(rs.getString("numero"));
+                //endereco.setCidade(rs.getString("cidade"));
+                //endereco.setDuracao(rs.getInt("duracao"));
                 
-                cursos.add(curso);
+                enderecos.add(endereco);
             }
                 
-            return cursos;
+            return enderecos;
         } catch (SQLException ex) {
             System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
         } finally {
