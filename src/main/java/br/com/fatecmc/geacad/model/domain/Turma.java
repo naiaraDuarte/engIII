@@ -4,36 +4,32 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Turma extends EntidadeDominio {
-    private String descricao;
+    private String nome;
     private String ano;
     private String periodo;
     private ArrayList<Disciplina> disciplinas;
     
     public Turma() {
         super(0);
-        this.descricao = "";
+        this.nome = "";
         this.ano= "";
         this.periodo="";
                     
     }
 
-    public Turma(String descricao, String ano, ArrayList<Disciplina> disciplinas, String periodo) {
-        this.descricao = descricao;
+    public Turma(String nome, String ano, ArrayList<Disciplina> disciplinas, String periodo) {
+        this.nome = nome;
         this.ano = ano;
         this.disciplinas = disciplinas;
         this.periodo = periodo;
     }
 
-    public Turma(String descricao, String ano, String periodo, int id_turma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getNome() {
+        return nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getAno() {
@@ -44,6 +40,14 @@ public class Turma extends EntidadeDominio {
         this.ano = ano;
     }
 
+    public String getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(String periodo) {
+        this.periodo = periodo;
+    }
+
     public ArrayList<Disciplina> getDisciplinas() {
         return disciplinas;
     }
@@ -52,6 +56,6 @@ public class Turma extends EntidadeDominio {
         this.disciplinas = disciplinas;
     }
     
-    }
+}
 
     

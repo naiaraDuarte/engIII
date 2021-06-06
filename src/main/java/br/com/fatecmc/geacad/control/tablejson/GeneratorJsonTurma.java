@@ -16,10 +16,10 @@ public class GeneratorJsonTurma implements IGeneratorJson {
                 Turma t = (Turma) e;
                 data += " ["
                     +"\""+ t.getId() + "\","
-                    +"\""+ t.getDescricao() + "\","
+                    +"\""+ t.getNome() + "\","
                     +"\""+ t.getAno()+ "\","
                     +"\"<a href='/geacad/FormTurma.jsp"
-                    +"?descricao="+ t.getDescricao()
+                    +"?descricao="+ t.getNome()
                     +"&datainicio="+ t.getAno()
                     +"&id="+ t.getId()
                     +"'>Editar</a>\","

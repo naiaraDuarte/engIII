@@ -1,26 +1,5 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
-<h:head>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link href="css/styleindex.css" rel="stylesheet" type="text/css" />
-    <script src ="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
-    <title>GeAcad - Alunos</title>
-</h:head>
-<h:body>
-    <div id="menu">
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="./ListAluno.xhtml">Aluno</a></li>
-            <li><a href="./ListProfessor.xhtml">Professor</a></li>
-            <li><a href="./ListCurso.xhtml">Curso</a></li>
-            <li><a href="./ListTurma.xhtml">Turma</a></li>
-            <li><a href="./ListDisciplina.xhtml">Disciplina</a></li>
-        </ul>
-    </div>
-    <div class="container centro ">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="header.jsp" %>
         <table class="table table-hover table-bordered display" id="minhatable">
             <thead class="thead-dark">
                 <tr>
@@ -54,5 +33,4 @@
             });
         });
     </script>
-</h:body>
-</html>
+    <%@include file="footer.jsp" %>

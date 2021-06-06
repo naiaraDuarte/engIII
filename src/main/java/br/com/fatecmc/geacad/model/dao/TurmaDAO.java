@@ -1,12 +1,13 @@
 package br.com.fatecmc.geacad.model.dao;
 
-import br.com.fatecmc.geacad.model.domain.Curso;
 import br.com.fatecmc.geacad.model.domain.Turma;
 import br.com.fatecmc.geacad.model.domain.EntidadeDominio;
 import br.com.fatecmc.geacad.util.ConnectionConstructor;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TurmaDAO implements IDAO {
     private Connection conn;
@@ -14,8 +15,12 @@ public class TurmaDAO implements IDAO {
     @Override
     public int salvar(EntidadeDominio entidade) {
         int id = 0;
-        this.conn = ConnectionConstructor.getConnection();
-        String sql = "INSERT INTO turmas(descricao, data_inicio, cursos_id_curso) VALUES(?, ?, ?)";
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "INSERT INTO turmas(nome, ano, periodo, fk_disciplina) VALUES(?, ?, ?, ?)";
 
         PreparedStatement stmt = null;
         
@@ -24,9 +29,11 @@ public class TurmaDAO implements IDAO {
                 conn.setAutoCommit(false);
                 
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                stmt.setString(1, ((Turma) entidade).getDescricao());
-                stmt.setDate(2, new Date(((Turma) entidade).getData_inicio().getTime()));
-                stmt.setInt(3, ((Turma) entidade).getCurso().getId());
+                stmt.setString(1, ((Turma) entidade).getNome());
+                stmt.setString(2, ((Turma) entidade).getAno());                
+                stmt.setString(3, ((Turma) entidade).getPeriodo());
+                //preciso arrumar isso
+                //stmt.set(4, ((Turma) entidade).getDisciplinas().get(1));
 
                 stmt.executeUpdate();
                 
@@ -45,17 +52,24 @@ public class TurmaDAO implements IDAO {
 
     @Override
     public boolean alterar(EntidadeDominio entidade) {
-        this.conn = ConnectionConstructor.getConnection();
-        String sql = "UPDATE turmas SET descricao=?, data_inicio=?, cursos_id_curso=? WHERE id_turma=?";
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "UPDATE turmas SET nome=?, ano=?, periodo=? WHERE id_turma=?";
 
         PreparedStatement stmt = null;
         
         if(entidade instanceof Turma){
             try {
                 stmt = conn.prepareStatement(sql);
-                stmt.setString(1, ((Turma) entidade).getDescricao());
-                stmt.setDate(2, new Date(((Turma) entidade).getData_inicio().getTime()));
-                stmt.setInt(3, ((Turma) entidade).getCurso().getId());
+                stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                stmt.setString(1, ((Turma) entidade).getNome());
+                stmt.setString(2, ((Turma) entidade).getAno());                
+                stmt.setString(3, ((Turma) entidade).getPeriodo());
+                //preciso arrumar isso
+                //stmt.set(4, ((Turma) entidade).getDisciplinas().get(1));
                 stmt.setInt(4, entidade.getId());
 
                 if(stmt.executeUpdate() == 1) return true;
@@ -70,7 +84,11 @@ public class TurmaDAO implements IDAO {
 
     @Override
     public boolean excluir(int id) {
-        this.conn = ConnectionConstructor.getConnection();
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String sql = "DELETE FROM turmas WHERE id_turma=?";
 
         PreparedStatement stmt = null;
@@ -90,7 +108,11 @@ public class TurmaDAO implements IDAO {
     
     @Override
     public List consultar() {
-        this.conn = ConnectionConstructor.getConnection();
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String sql = "SELECT * FROM turmas";
         
         PreparedStatement stmt = null;
@@ -103,14 +125,13 @@ public class TurmaDAO implements IDAO {
             
             while(rs.next()) {
                 Turma turma = new Turma();
-                Curso curso = new Curso();
+                
                 
                 turma.setId(rs.getInt("id_turma"));
-                turma.setDescricao(rs.getString("descricao"));
-                turma.setData_inicio(rs.getDate("data_inicio"));
-                curso.setId(rs.getInt("cursos_id_curso"));
-                
-                turma.setCurso(curso);
+                turma.setNome(rs.getString("nome"));
+                turma.setPeriodo(rs.getString("periodo"));
+                turma.setId(rs.getInt("disciplinas_id_disciplina"));                
+                //turma.setDisciplina(disciplina);
                 turmas.add(turma);
             }
                 
@@ -125,7 +146,11 @@ public class TurmaDAO implements IDAO {
     
     @Override
     public List consultar(int id) {
-        this.conn = ConnectionConstructor.getConnection();
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String sql = "SELECT * FROM turmas WHERE id_turma=?";
         
         PreparedStatement stmt = null;
@@ -140,14 +165,12 @@ public class TurmaDAO implements IDAO {
             
             while(rs.next()) {
                 Turma turma = new Turma();
-                Curso curso = new Curso();
                 
                 turma.setId(rs.getInt("id_turma"));
-                turma.setDescricao(rs.getString("descricao"));
-                turma.setData_inicio(rs.getDate("data_inicio"));
-                curso.setId(rs.getInt("cursos_id_curso"));
-                
-                turma.setCurso(curso);
+                turma.setNome(rs.getString("nome"));
+                turma.setPeriodo(rs.getString("periodo"));
+                turma.setId(rs.getInt("disciplinas_id_disciplina"));                
+                //turma.setDisciplina(disciplina);
                 turmas.add(turma);
             }
                 
