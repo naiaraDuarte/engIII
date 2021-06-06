@@ -1,5 +1,6 @@
 package br.com.fatecmc.geacad.control.viewhelper;
 
+import br.com.fatecmc.geacad.model.domain.Endereco;
 import br.com.fatecmc.geacad.model.domain.Professor;
 import br.com.fatecmc.geacad.model.domain.EntidadeDominio;
 import br.com.fatecmc.geacad.util.ParameterParser;
@@ -14,16 +15,19 @@ public class ProfessorVH implements IViewHelper {
 
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
-        double salario =   ParameterParser.toDouble(request.getParameter("salario"));
         String titulacao = request.getParameter("titulacao");
         String nome =      request.getParameter("nome");
-        String rg =        request.getParameter("rg");
+        String telefone =  request.getParameter("telefone");
         String cpf =       request.getParameter("cpf");
         Date dt_nasc =     ParameterParser.toDate(request.getParameter("datanasc"));
         String sexo =      request.getParameter("sexo");
+        int id_endereco =  ParameterParser.toInt (request.getParameter("endereco"));
         int id_prof =      ParameterParser.toInt(request.getParameter("id"));
         
-        Professor professor = new Professor(salario, titulacao, nome, rg, cpf, dt_nasc, sexo, id_prof);
+        Endereco endereco = new Endereco();
+        endereco.setId(id_endereco); 
+        
+        Professor professor = new Professor(titulacao, endereco, nome, telefone, cpf, dt_nasc, sexo, id_prof);
         return professor;
     }
 
