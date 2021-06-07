@@ -5,6 +5,15 @@ public class Endereco extends EntidadeDominio {
     private String numero;
     private Estado estado;
     private Cidade cidade;
+    private String bairro;
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
 
     public String getLogradouro() {
         return logradouro;
