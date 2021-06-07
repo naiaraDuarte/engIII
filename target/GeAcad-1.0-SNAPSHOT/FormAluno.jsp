@@ -2,39 +2,30 @@
 <%@include file="header.jsp" %>
 
 <%
-    String status = request.getParameter("status");
     String ra = request.getParameter("ra");
     String turma = request.getParameter("turma");
-    String pessoa = request.getParameter("pessoa");
     String nome = request.getParameter("nome");
-    String email = request.getParameter("email");
-    String rg = request.getParameter("rg");
     String cpf = request.getParameter("cpf");
     String datanasc = request.getParameter("datanasc");
     String sexo = request.getParameter("sexo");
     String id = request.getParameter("id");
     String telefone = request.getParameter("telefone");
 
-    if (status == null) {
-        status = "";
-    }
+    String logradouro = request.getParameter("logradouro");
+    String numero = request.getParameter("numero");
+    String bairro = request.getParameter("bairro");
+    String cidade = request.getParameter("cidade");
+    String uf = request.getParameter("uf");
+    String cep = request.getParameter("cep");
+
     if (ra == null) {
         ra = "";
     }
     if (turma == null) {
         turma = "";
     }
-    if (pessoa == null) {
-        pessoa = "";
-    }
     if (nome == null) {
         nome = "";
-    }
-    if (email == null) {
-        email = "";
-    }
-    if (rg == null) {
-        rg = "";
     }
     if (cpf == null) {
         cpf = "";
@@ -48,17 +39,31 @@
     if (id == null) {
         id = "";
     }
-    if (telefone == null)
+    if (telefone == null) {
         telefone = "";
+    }
+    if (logradouro == null) {
+        logradouro = "";
+    }
+    if (cidade == null) {
+        cidade = "";
+    }
+    if (bairro == null) {
+        bairro = "";
+    }
+    if (uf == null) {
+        uf = "";
+    }
+    if (cep == null) {
+        cep = "";
+    }
+
 %>
 <div class="conteudo">
     <div class="titulo">
         <h3> <i class="fas fa-angle-right"></i> Aluno</h3>
     </div>
     <hr/>
-
-
-
 
     <form action="./Aluno" method="post">
         <div class="form-row">
@@ -87,6 +92,10 @@
                 <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Digite o telefone" value="<%=telefone%>">
             </div>
             <div class="form-group col-md-6">
+                <label for="turma">Turma </label>
+                <input type="text" id="turma" name="turma" class="form-control" placeholder="Digite a turma" value="<%=turma%>">
+            </div>
+            <div class="form-group col-md-6">
                 <label for="ra">Sexo: </label>
                 <div class="custom-control custom-radio custom-control-inline">
                     <label class="form-check-label" for="masculino">
@@ -106,72 +115,49 @@
                         Indefinido
                     </label>
                 </div>
-                <input type="hidden" id="pessoa" name="pessoa" value="<%=pessoa%>">
                 <input type="hidden" id="id" name="id" value="<%=id%>">
             </div>
         </div>
-            <div class="form-row botao">
-                <button class="btn btn-primary" type="submit" name="operacao" value="<%= id == "" ? "SALVAR" : "ALTERAR"%>">Salvar</button>
+        <div class="titulo">
+            <h3> <i class="fas fa-angle-right"></i> Endereço</h3>
+        </div>
+        <hr/>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="logradouro">Logradouro: </label>
+                <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro" value="<%=logradouro%>">
             </div>
-        <!-- <fieldset>
- 
-             <fieldset class="grupo">
-                 <div class="campo">
-                     <label for="ra">RA</label>
-                     <input type="text" id="ra" name="ra" style="width: 20em" value="<%=ra%>">
-                 </div>
-             </fieldset> 
- 
-             <div class="campo">
-                 <label for="status">Status</label>
-                 <input type="text" id="status" name="status" style="width: 41em" value="<%=status%>">
-             </div>
- 
-             <fieldset class="grupo">
-                 <div class="campo">
-                     <label for="nome">Nome</label>
-                     <input type="text" id="nome" name="nome" style="width: 20em" value="<%=nome%>">
-                 </div>
-             </fieldset> 
- 
-             <div class="campo">
-                 <label for="email">E-mail</label>
-                 <input type="text" id="email" name="email" style="width: 41em" value="<%=email%>">
-             </div>
- 
-             <div class="campo">
-                 <label for="rg">RG</label>
-                 <input type="text" id="rg" name="rg" style="width: 20em" value="<%=rg%>">
-             </div>
- 
-             <fieldset class="grupo">
-                 <div class="campo">
-                     <label for="cpf">CPF</label>
-                     <input type="text" id="cpf" name="cpf" style="width: 20em" value="<%=cpf%>">
-                 </div>
-             </fieldset>
- 
-             <div class="campo">
-                 <label for="sexo">Sexo</label>
-                 <input type="text" id="sexo" name="sexo" style="width: 20em" value="<%=sexo%>">
-             </div>
- 
-             <div class="campo">
-                 <label for="datanasc">Data de Nascimento</label>
-                 <input type="date" id="datanasc" name="datanasc" style="width: 20em" value="<%=datanasc%>">
-             </div>
- 
-             <div class="campo">
-                 <label for="turma">Turma</label>
-                 <input type="text" id="turma" name="turma" style="width: 20em" value="<%=turma%>">
-             </div>  
- 
-             <input type="hidden" id="pessoa" name="pessoa" value="<%=pessoa%>">
-             <input type="hidden" id="id" name="id" value="<%=id%>">
- 
-             <button class="botao submit" type="submit" name="operacao" value="<%= id == "" ? "SALVAR" : "ALTERAR"%>">Salvar</button>
- 
-         </fieldset>-->
+            <div class="form-group col-md-6">
+                <label for="numero"> Numero:</label>
+                <input type="number" id="numero" class="form-control" name="numero" value="<%=numero%>">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="bairro">Bairro: </label>
+                <input type="text" id="bairro" name="bairro" class="form-control" placeholder="bairro" value="<%=bairro%>">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="cidade"> Cidade: </label>
+                <input type="text" id="cidade" class="form-control" name="cidade" value="<%=cidade%>">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="uf">UF: </label>
+                <input type="text" id="bairro" name="uf" class="form-control" placeholder="UF" value="<%=uf%>">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="cep"> CEP: </label>
+                <input type="text" id="cep" class="form-control" name="cep" value="<%=cep%>">
+            </div>
+        </div>
+
+
+        <div class="form-row botao">
+            <button class="btn btn-primary" type="submit" name="operacao" value="<%= id == "" ? "SALVAR" : "ALTERAR"%>">Salvar</button>
+        </div>
     </form>
 </div>
 <%@include file="footer.jsp" %>
