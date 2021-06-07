@@ -119,7 +119,7 @@ public class ProfessorDAO  implements IDAO{
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         String sql = "SELECT * FROM professores LEFT JOIN pessoas ON pessoas_id_professor = id_professor";
-        
+        //"SELECT * FROM tb_alunos alu + INNER JOIN tb_endereco ende on alu.id_endereco = ende.id")
         PreparedStatement stmt = null;
         ResultSet rs = null;
         

@@ -1,13 +1,11 @@
 package br.com.fatecmc.geacad.model.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Turma extends EntidadeDominio {
     private String nome;
     private String ano;
     private String periodo;
-    private ArrayList<Disciplina> disciplinas;
     
     public Turma() {
         super(0);
@@ -17,17 +15,15 @@ public class Turma extends EntidadeDominio {
                     
     }
 
-    public Turma(String nome, String ano, ArrayList<Disciplina> disciplinas, String periodo) {
+    public Turma(String nome, String ano, String periodo) {
         this.nome = nome;
         this.ano = ano;
-        this.disciplinas = disciplinas;
         this.periodo = periodo;
     }
 
-    public Turma(String nome, String ano, String periodo, Disciplina disciplina, int id_turma) {
+    public Turma(String nome, String ano, String periodo, int id_turma) {
         this.nome = nome;
         this.ano = ano;
-        this.disciplinas = disciplinas;
         this.periodo = periodo;
     }
     
@@ -54,14 +50,6 @@ public class Turma extends EntidadeDominio {
 
     public void setPeriodo(String periodo) {
         this.periodo = periodo;
-    }
-
-    public ArrayList<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
-    public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
     }
     
 }

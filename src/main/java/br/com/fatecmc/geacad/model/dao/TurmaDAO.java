@@ -1,5 +1,6 @@
 package br.com.fatecmc.geacad.model.dao;
 
+import br.com.fatecmc.geacad.model.domain.Disciplina;
 import br.com.fatecmc.geacad.model.domain.Turma;
 import br.com.fatecmc.geacad.model.domain.EntidadeDominio;
 import br.com.fatecmc.geacad.util.ConnectionConstructor;
@@ -15,11 +16,13 @@ public class TurmaDAO implements IDAO {
     @Override
     public int salvar(EntidadeDominio entidade) {
         int id = 0;
+        
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //verificar esse fk_disciplina
         String sql = "INSERT INTO turmas(nome, ano, periodo, fk_disciplina) VALUES(?, ?, ?, ?)";
 
         PreparedStatement stmt = null;
@@ -32,8 +35,7 @@ public class TurmaDAO implements IDAO {
                 stmt.setString(1, ((Turma) entidade).getNome());
                 stmt.setString(2, ((Turma) entidade).getAno());                
                 stmt.setString(3, ((Turma) entidade).getPeriodo());
-                //stmt.set(4, ((Turma) entidade).getDisciplinas().get(1));
-
+                
                 stmt.executeUpdate();
                 
                 ResultSet rs = stmt.getGeneratedKeys();
@@ -67,9 +69,6 @@ public class TurmaDAO implements IDAO {
                 stmt.setString(1, ((Turma) entidade).getNome());
                 stmt.setString(2, ((Turma) entidade).getAno());                
                 stmt.setString(3, ((Turma) entidade).getPeriodo());
-                //preciso arrumar isso
-                //stmt.set(4, ((Turma) entidade).getDisciplinas().get(1));
-                stmt.setInt(4, entidade.getId());
 
                 if(stmt.executeUpdate() == 1) return true;
             } catch (SQLException ex) {
@@ -129,8 +128,6 @@ public class TurmaDAO implements IDAO {
                 turma.setId(rs.getInt("id_turma"));
                 turma.setNome(rs.getString("nome"));
                 turma.setPeriodo(rs.getString("periodo"));
-                turma.setId(rs.getInt("disciplinas_id_disciplina"));                
-                //turma.setDisciplina(disciplina);
                 turmas.add(turma);
             }
                 
@@ -164,12 +161,10 @@ public class TurmaDAO implements IDAO {
             
             while(rs.next()) {
                 Turma turma = new Turma();
-                
+                //se tiver disciplina incluir aqui
                 turma.setId(rs.getInt("id_turma"));
                 turma.setNome(rs.getString("nome"));
                 turma.setPeriodo(rs.getString("periodo"));
-                turma.setId(rs.getInt("disciplinas_id_disciplina"));                
-                //turma.setDisciplina(disciplina);
                 turmas.add(turma);
             }
                 

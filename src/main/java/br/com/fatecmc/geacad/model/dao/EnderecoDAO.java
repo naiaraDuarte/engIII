@@ -32,7 +32,7 @@ public class EnderecoDAO implements IDAO {
                 stmt.setString(1, ((Endereco) entidade).getLogradouro());
                 stmt.setString(2, ((Endereco) entidade).getNumero());
                 stmt.setObject(3, ((Endereco) entidade).getCidade());
-                stmt.setObject(4, ((Endereco) entidade).getEstado());
+                stmt.setObject(4, ((Endereco) entidade).getCidade().getEstado());
 
                 stmt.executeUpdate();
                 
@@ -66,7 +66,7 @@ public class EnderecoDAO implements IDAO {
                 stmt.setString(1, ((Endereco) entidade).getLogradouro());
                 stmt.setString(2, ((Endereco) entidade).getNumero());
                 stmt.setObject(3, ((Endereco) entidade).getCidade());
-                stmt.setObject(4, ((Endereco) entidade).getEstado());
+                stmt.setObject(4, ((Endereco) entidade).getCidade().getEstado());
                 stmt.setInt(5, entidade.getId());
 
                 if(stmt.executeUpdate() == 1) return true;

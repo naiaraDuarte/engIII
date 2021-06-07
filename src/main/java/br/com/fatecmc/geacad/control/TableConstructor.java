@@ -1,5 +1,6 @@
 package br.com.fatecmc.geacad.control;
 
+import br.com.fatecmc.geacad.control.tablejson.GeneratorJsonEndereco;
 import br.com.fatecmc.geacad.control.tablejson.*;
 import br.com.fatecmc.geacad.control.command.ConsultarCommand;
 import java.io.IOException;
@@ -26,12 +27,14 @@ public class TableConstructor extends HttpServlet {
         entitys.put("Disciplina", new Disciplina());	
         entitys.put("Professor", new Professor());
         entitys.put("Turma", new Turma());
+        entitys.put("Endereco", new Endereco());
         
         generators = new HashMap<>();
         generators.put("Aluno", new GeneratorJsonAluno());
         generators.put("Disciplina", new GeneratorJsonDisciplina());
         generators.put("Professor", new GeneratorJsonProfessor());
         generators.put("Turma", new GeneratorJsonTurma());
+        generators.put("Endereco", new GeneratorJsonEndereco());
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
