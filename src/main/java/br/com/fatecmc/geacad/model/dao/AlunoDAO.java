@@ -43,10 +43,10 @@ public class AlunoDAO implements IDAO {
                     id = rs.getInt(1);
                 }
 
-                EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
-                Endereco endereco = new Endereco();
-                endereco.setId_pessoa(id);
-                enderecoDAO.salvar(endereco);
+                //EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
+               // Endereco endereco = new Endereco();
+                //endereco.setId_pessoa(id);
+                //enderecoDAO.salvar(endereco);
 
                 conn.commit();
             } catch (SQLException ex) {

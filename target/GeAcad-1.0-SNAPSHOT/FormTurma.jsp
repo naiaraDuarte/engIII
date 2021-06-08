@@ -1,19 +1,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
 <%
-    String descricao = request.getParameter("descricao");
-    String datainicio = request.getParameter("datainicio");
-    String curso = request.getParameter("curso");
+    String nome = request.getParameter("nome");
+    String ano = request.getParameter("ano");
+    String periodo = request.getParameter("periodo");
     String id = request.getParameter("id");
 
-    if (descricao == null) {
-        descricao = "";
+    if (nome == null) {
+        nome = "";
     }
-    if (datainicio == null) {
-        datainicio = "";
+    if (ano == null) {
+        ano = "";
     }
-    if (curso == null) {
-        curso = "";
+    if (periodo == null) {
+        periodo = "";
     }
     if (id == null)
         id = "";
@@ -24,20 +24,20 @@
 
         <fieldset class="grupo">
             <div class="campo">
-                <label for="descricao">Descrição</label>
-                <input type="text" id="descricao" name="descricao" style="width: 20em" value="<%=descricao%>">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" style="width: 20em" value="<%=nome%>">
             </div>
         </fieldset> 
 
         <div class="campo">
-            <label for="datainicio">Data de Início</label>
-            <input type="date" id="datainicio" name="datainicio" style="width: 20em" value="<%=datainicio%>">
+            <label for="ano">Ano letivo</label>
+            <input type="string" id="ano" name="ano" style="width: 20em" value="<%=ano%>">
         </div>
 
         <fieldset class="grupo">
             <div class="campo">
-                <label for="datainicio">Curso</label>
-                <input type="text" id="curso" name="curso" style="width: 20em" value="<%=curso%>">
+                <label for="periodo">Curso</label>
+                <input type="text" id="periodo" name="periodo" style="width: 20em" value="<%=periodo%>">
             </div>
         </fieldset> 
 
