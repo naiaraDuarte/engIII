@@ -34,7 +34,7 @@ public class AlunoDAO implements IDAO {
                 stmt.setDate(4, (Date) ((Aluno) entidade).getData_nascimento());
                 stmt.setString(5, ((Aluno) entidade).getSexo());
                 stmt.setInt(6, ((Aluno) entidade).getTurma().getId());
-                stmt.setString(8, ((Aluno) entidade).getNome());
+                stmt.setString(7, ((Aluno) entidade).getNome());
 
                 stmt.executeUpdate();
 

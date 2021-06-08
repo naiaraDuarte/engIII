@@ -100,19 +100,19 @@
                 <label for="ra">Sexo: </label>
                 <div class="custom-control custom-radio custom-control-inline">
                     <label class="form-check-label" for="masculino">
-                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value=<%=sexo == "" ? "M" : sexo%>>
+                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value="M">
                         Masculino
                     </label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
                     <label class="form-check-label" for="feminino">
-                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value=<%=sexo == "" ? "F" : sexo%>>
+                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value="F">
                         Feminino
                     </label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
                     <label class="form-check-label" for="indefinido">
-                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value="<%=sexo == "" ? "I" : sexo%>">
+                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value="I">
                         Indefinido
                     </label>
                 </div>
