@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
 
-<%
+    <%
     String ra = request.getParameter("ra");
     String turma = request.getParameter("turma");
     String nome = request.getParameter("nome");
@@ -58,6 +58,7 @@
         cep = "";
     }
 
+
 %>
 <div class="conteudo">
     <div class="titulo">
@@ -99,13 +100,13 @@
                 <label for="ra">Sexo: </label>
                 <div class="custom-control custom-radio custom-control-inline">
                     <label class="form-check-label" for="masculino">
-                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value="<%=sexo%>">
+                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value="M">
                         Masculino
                     </label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
                     <label class="form-check-label" for="feminino">
-                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value="<%=sexo%>">
+                        <input class="form-check-input" type="radio" id="sexo" name="sexo" value="F">
                         Feminino
                     </label>
                 </div>
@@ -159,5 +160,5 @@
             <button class="btn btn-primary" type="submit" name="operacao" value="<%= id == "" ? "SALVAR" : "ALTERAR"%>">Salvar</button>
         </div>
     </form>
-</div>
+</div>       
 <%@include file="footer.jsp" %>

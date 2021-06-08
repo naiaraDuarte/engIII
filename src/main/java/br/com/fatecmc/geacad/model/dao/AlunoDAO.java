@@ -19,7 +19,7 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "INSERT INTO alunos(ra, cpf, telefone, data_nasc, sexo, fk_turma, fk_endereco, nome) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO aluno(ra, cpf, telefone, data_nasc, sexo, fk_turma, fk_endereco, nome) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = null;
         
         if(entidade instanceof Aluno){
@@ -33,7 +33,8 @@ public class AlunoDAO implements IDAO {
                 stmt.setDate(4, (Date) ((Aluno) entidade).getData_nascimento());
                 stmt.setString(5, ((Aluno) entidade).getSexo());
                 stmt.setInt(6, ((Aluno) entidade).getTurma().getId());
-                stmt.setInt(7, ((Aluno) entidade).getEndereco().getId());
+                stmt.setInt(7, 1);
+                //stmt.setInt(7, ((Aluno) entidade).getEndereco().getId());
                 stmt.setString(8, ((Aluno) entidade).getNome());
                 
                 
@@ -59,7 +60,7 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "UPDATE alunos SET ra=?, cpf=?, telefone=?, data_nasc=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
+        String sql = "UPDATE aluno SET ra=?, cpf=?, telefone=?, data_nasc=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
 
         PreparedStatement stmt = null;
         
@@ -92,7 +93,7 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "DELETE FROM alunos WHERE id_aluno=?";
+        String sql = "DELETE FROM aluno WHERE id_aluno=?";
 
         PreparedStatement stmt = null;
 
@@ -116,7 +117,7 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM alunos LEFT JOIN pessoas ON pessoas_id_pessoa = id_pessoa";
+        String sql = "SELECT * FROM aluno";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -135,11 +136,11 @@ public class AlunoDAO implements IDAO {
                 aluno.setNome(rs.getString("nome"));
                 aluno.setTelefone(rs.getString("telefone"));
                 aluno.setCpf(rs.getString("cpf"));
-                aluno.setData_nascimento(rs.getDate("data_nascimento"));
+                aluno.setData_nascimento(rs.getDate("data_nasc"));
                 aluno.setSexo(rs.getString("sexo"));
                 //aluno.setEndereco(rs.getString("Endereco"));
                 //aluno.setEndereco;
-                turma.setId(rs.getInt("turmas_id_turma"));
+                turma.setId(rs.getInt("fk_turma"));
                 
                 aluno.setTurma(turma);
                 alunos.add(aluno);
@@ -161,7 +162,7 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM alunos LEFT JOIN pessoas ON pessoas_id_pessoa = id_pessoa WHERE id_aluno=?";
+        String sql = "SELECT * FROM aluno LEFT JOIN pessoas ON pessoas_id_pessoa = id_pessoa WHERE id_aluno=?";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;

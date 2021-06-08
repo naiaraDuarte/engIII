@@ -51,10 +51,9 @@
             <version>1.2</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.22</version>
-            <scope>compile</scope>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.19</version>
         </dependency>
     </dependencies>
 
