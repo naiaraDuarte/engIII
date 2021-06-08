@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AlunoDAO implements IDAO {
+
     private Connection conn;
 
     @Override
@@ -19,13 +20,13 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "INSERT INTO aluno(ra, cpf, telefone, data_nasc, sexo, fk_turma, fk_endereco, nome) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO aluno(ra, cpf, telefone, data_nasc, sexo, fk_turma, nome) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = null;
-        
-        if(entidade instanceof Aluno){
+
+        if (entidade instanceof Aluno) {
             try {
                 conn.setAutoCommit(false);
-                
+
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, ((Aluno) entidade).getRa());
                 stmt.setString(2, ((Aluno) entidade).getCpf());
@@ -33,17 +34,21 @@ public class AlunoDAO implements IDAO {
                 stmt.setDate(4, (Date) ((Aluno) entidade).getData_nascimento());
                 stmt.setString(5, ((Aluno) entidade).getSexo());
                 stmt.setInt(6, ((Aluno) entidade).getTurma().getId());
-                stmt.setInt(7, 1);
-                //stmt.setInt(7, ((Aluno) entidade).getEndereco().getId());
                 stmt.setString(8, ((Aluno) entidade).getNome());
-                
-                
+
                 stmt.executeUpdate();
-                
+
                 ResultSet rs = stmt.getGeneratedKeys();
-                if(rs.next()) id = rs.getInt(1);
-                
-                conn.commit();	
+                if (rs.next()) {
+                    id = rs.getInt(1);
+                }
+
+                EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
+                Endereco endereco = new Endereco();
+                endereco.setId_pessoa(id);
+                enderecoDAO.salvar(endereco);
+
+                conn.commit();
             } catch (SQLException ex) {
                 System.out.println("Não foi possível salvar os dados no banco de dados.\nErro: " + ex.getMessage());
             } finally {
@@ -63,8 +68,8 @@ public class AlunoDAO implements IDAO {
         String sql = "UPDATE aluno SET ra=?, cpf=?, telefone=?, data_nasc=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
 
         PreparedStatement stmt = null;
-        
-        if(entidade instanceof Aluno){
+
+        if (entidade instanceof Aluno) {
             try {
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, ((Aluno) entidade).getRa());
@@ -76,7 +81,9 @@ public class AlunoDAO implements IDAO {
                 stmt.setInt(7, ((Aluno) entidade).getEndereco().getId());
                 stmt.setString(8, ((Aluno) entidade).getNome());
 
-                if(stmt.executeUpdate() == 1) return true;
+                if (stmt.executeUpdate() == 1) {
+                    return true;
+                }
             } catch (SQLException ex) {
                 System.out.println("Não foi possível alterar os dados no banco de dados.\nErro: " + ex.getMessage());
             } finally {
@@ -101,7 +108,9 @@ public class AlunoDAO implements IDAO {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
 
-            if(stmt.executeUpdate() == 1) return true;
+            if (stmt.executeUpdate() == 1) {
+                return true;
+            }
         } catch (SQLException ex) {
             System.out.println("Não foi possível excluir os dados no banco de dados.\nErro: " + ex.getMessage());
         } finally {
@@ -109,7 +118,7 @@ public class AlunoDAO implements IDAO {
         }
         return false;
     }
-    
+
     @Override
     public List consultar() {
         try {
@@ -118,20 +127,21 @@ public class AlunoDAO implements IDAO {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         String sql = "SELECT * FROM aluno";
-        
+
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         List<Aluno> alunos = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
-            
-            while(rs.next()) {
+
+            while (rs.next()) {
                 Aluno aluno = new Aluno();
                 Turma turma = new Turma();
-                
-                aluno.setId(rs.getInt("id_aluno"));                
+                Endereco endereco = new Endereco();
+
+                aluno.setId(rs.getInt("id_aluno"));
                 aluno.setRa(rs.getString("ra"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setTelefone(rs.getString("telefone"));
@@ -140,12 +150,13 @@ public class AlunoDAO implements IDAO {
                 aluno.setSexo(rs.getString("sexo"));
                 //aluno.setEndereco(rs.getString("Endereco"));
                 //aluno.setEndereco;
+
                 turma.setId(rs.getInt("fk_turma"));
-                
+
                 aluno.setTurma(turma);
                 alunos.add(aluno);
             }
-                
+
             return alunos;
         } catch (SQLException ex) {
             System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
@@ -154,7 +165,7 @@ public class AlunoDAO implements IDAO {
         }
         return null;
     }
-    
+
     @Override
     public List consultar(int id) {
         try {
@@ -162,35 +173,35 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM aluno LEFT JOIN pessoas ON pessoas_id_pessoa = id_pessoa WHERE id_aluno=?";
-        
+        String sql = "SELECT * FROM aluno WHERE id_aluno=?";
+
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         List<Aluno> alunos = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
-            
+
             rs = stmt.executeQuery();
-            
-            while(rs.next()) {
+
+            while (rs.next()) {
                 Aluno aluno = new Aluno();
                 Turma turma = new Turma();
-                
+
                 aluno.setId(rs.getInt("id_aluno"));
                 aluno.setRa(rs.getString("ra"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setTelefone(rs.getString("telefone"));
                 aluno.setCpf(rs.getString("cpf"));
-                aluno.setData_nascimento(rs.getDate("data_nascimento"));
+                aluno.setData_nascimento(rs.getDate("data_nasc"));
                 aluno.setSexo(rs.getString("sexo"));
-                turma.setId(rs.getInt("turmas_id_turma"));
-                
+                turma.setId(rs.getInt("fk_turma"));
+
                 aluno.setTurma(turma);
                 alunos.add(aluno);
             }
-                
+
             return alunos;
         } catch (SQLException ex) {
             System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
@@ -199,5 +210,5 @@ public class AlunoDAO implements IDAO {
         }
         return null;
     }
-    
+
 }

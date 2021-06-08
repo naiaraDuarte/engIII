@@ -16,18 +16,18 @@ public class GeneratorJsonAluno implements IGeneratorJson {
                 Aluno a = (Aluno) e;
                 data += " ["
                     +"\""+ a.getId() + "\","
+                    +"\""+ a.getNome() + "\","
                     +"\""+ a.getRa() + "\","
                     +"\""+ a.getTurma().getId() + "\","
-                    +"\""+ a.getNome() + "\","
                     +"\""+ a.getTelefone()+ "\","
                     +"\""+ a.getCpf()+ "\","
                     +"\""+ a.getData_nascimento()+ "\","
                     +"\""+ a.getSexo()+ "\","
-                    +"\"<a href='/geacad/FormAluno.jsp"
-                    +"&ra=" +a.getRa()
+                    +"\"<a href='/geacad/faces/FormAluno.jsp"
+                    +"?ra=" +a.getRa()
                     +"&turma="+ a.getTurma().getId()
                     +"&nome="+ a.getNome()
-                    +"&rg="+ a.getTelefone()
+                    +"&telefone="+ a.getTelefone()
                     +"&cpf="+ a.getCpf()
                     +"&datanasc="+ a.getData_nascimento()
                     +"&sexo="+ a.getSexo()
