@@ -44,9 +44,11 @@ public class AlunoDAO implements IDAO {
                 }
 
                 EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
-                Endereco endereco = new Endereco();
-                endereco.setId_pessoa(id);
-                enderecoDAO.salvar(endereco);
+                /*Endereco endereco = new Endereco();
+                endereco.setId_pessoa(id);*/
+                Aluno aluno = new Aluno();
+                aluno.setId(id);
+                enderecoDAO.salvar(aluno);
 
                 conn.commit();
             } catch (SQLException ex) {
