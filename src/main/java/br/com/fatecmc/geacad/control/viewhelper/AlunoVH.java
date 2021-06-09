@@ -42,7 +42,9 @@ public class AlunoVH implements IViewHelper {
         Turma turma = new Turma();
         turma.setId(id_turma);
 
-        Aluno aluno = new Aluno(ra, turma, nome, telefone, cpf, dt_nasc, sexo, id_aluno);
+        Aluno aluno = new Aluno(ra, turma, endereco, nome, telefone, cpf, dt_nasc, sexo, id_aluno);
+        aluno.setEndereco(endereco);
+        //String ra, Turma turma, Endereco endereco, String nome, String telefone, String cpf, Date data_nascimento, String sexo, int id
         return aluno;
     }
 

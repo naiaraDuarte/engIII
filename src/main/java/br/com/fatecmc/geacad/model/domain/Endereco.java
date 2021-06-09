@@ -7,7 +7,7 @@ public class Endereco extends EntidadeDominio {
     private String bairro;
     private String cep;
     private String estado;
-    private Integer id_pessoa;
+    private Pessoa pessoa;
 
     public Endereco() {
     }
@@ -17,17 +17,17 @@ public class Endereco extends EntidadeDominio {
     }
 
     
-    public Endereco(String logradouro, String numero, String cidade, String bairro, String cep, String estado, Integer id_pessoa) {
+    public Endereco(String logradouro, String numero, String cidade, String bairro, String cep, String estado, Pessoa pessoa) {
         this.logradouro = logradouro;
         this.numero = numero;
         this.cidade = cidade;
         this.bairro = bairro;
         this.cep = cep;
         this.estado = estado;
-        this.id_pessoa = id_pessoa;
+        this.pessoa = pessoa;
     }
 
-    public Endereco(String logradouro, String numero, String cidade, String bairro, String cep, String estado, Integer id_pessoa, int id) {
+    public Endereco(String logradouro, String numero, String cidade, String bairro, String cep, String estado, Pessoa pessoa, int id) {
         super(id);
         this.logradouro = logradouro;
         this.numero = numero;
@@ -35,7 +35,7 @@ public class Endereco extends EntidadeDominio {
         this.bairro = bairro;
         this.cep = cep;
         this.estado = estado;
-        this.id_pessoa = id_pessoa;
+         this.pessoa = pessoa;
     }
 
     public Endereco(String logradouro, String numero, String cidade, String uf, String bairro, String cep) {
@@ -95,14 +95,12 @@ public class Endereco extends EntidadeDominio {
         this.estado = estado;
     }
 
-    public Integer getId_pessoa() {
-        return id_pessoa;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setId_pessoa(Integer id_pessoa) {
-        this.id_pessoa = id_pessoa;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
-
-    
 }
 
