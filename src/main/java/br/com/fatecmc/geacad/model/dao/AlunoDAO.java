@@ -15,6 +15,7 @@ public class AlunoDAO implements IDAO {
     @Override
     public int salvar(EntidadeDominio entidade) {
         int id = 0;
+        
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -43,10 +44,12 @@ public class AlunoDAO implements IDAO {
                     id = rs.getInt(1);
                 }
 
-                //EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
-               // Endereco endereco = new Endereco();
-                //endereco.setId_pessoa(id);
-                //enderecoDAO.salvar(endereco);
+                EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
+                Endereco endereco = new Endereco();
+                //endereco.setId_pessoa(id);*/
+                Aluno aluno = new Aluno();
+                aluno.setId(id);
+                enderecoDAO.salvar(aluno);
 
                 conn.commit();
             } catch (SQLException ex) {
