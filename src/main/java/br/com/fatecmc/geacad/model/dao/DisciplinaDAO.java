@@ -19,7 +19,7 @@ public class DisciplinaDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DisciplinaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "INSERT INTO disciplinas(nome, carga_horaria) VALUES(?, ?)";
+        String sql = "INSERT INTO disciplina(nome, carga_horaria) VALUES(?, ?)";
 
         PreparedStatement stmt = null;
         
@@ -53,7 +53,7 @@ public class DisciplinaDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DisciplinaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "UPDATE disciplinas SET nome=?, carga_horaria=? WHERE id_disciplina=?";
+        String sql = "UPDATE disciplina SET nome=?, carga_horaria=? WHERE id_disciplina=?";
 
         PreparedStatement stmt = null;
         
@@ -81,7 +81,7 @@ public class DisciplinaDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DisciplinaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "DELETE FROM disciplinas WHERE id_disciplina=?";
+        String sql = "DELETE FROM disciplina WHERE id_disciplina=?";
 
         PreparedStatement stmt = null;
 
@@ -105,7 +105,7 @@ public class DisciplinaDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DisciplinaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM disciplinas";
+        String sql = "SELECT * FROM disciplina";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;

@@ -81,6 +81,13 @@ public class Facade implements IFacade {
             }else if(entidade instanceof Professor){
                 dao = daos.get(new Professor().getClass().getName());
                 ((Professor) entidade).setId(dao.salvar(entidade));
+            }else if(entidade instanceof Turma){
+                dao = daos.get(new Turma().getClass().getName());
+                ((Turma) entidade).setId(dao.salvar(entidade));
+            }
+            else if(entidade instanceof Disciplina){
+                dao = daos.get(new Disciplina().getClass().getName());
+                ((Disciplina) entidade).setId(dao.salvar(entidade));
             }
             dao = daos.get(entidade.getClass().getName());
             dao.salvar(entidade);

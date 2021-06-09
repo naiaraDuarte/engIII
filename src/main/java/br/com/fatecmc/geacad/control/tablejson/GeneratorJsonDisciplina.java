@@ -18,11 +18,9 @@ public class GeneratorJsonDisciplina implements IGeneratorJson {
                     +"\""+ d.getId() + "\","
                     +"\""+ d.getNome() + "\","
                     +"\""+ d.getCarga_horaria() + "\","
-                    +"\""+ d.getProfessor().getId()+ "\","
                     +"\"<a href='/geacad/FormDisciplina.jsp"
                     +"?nome="+ d.getNome()
                     +"&cargahor="+ d.getCarga_horaria()
-                    +"&professor="+ d.getProfessor().getId()
                     +"&id="+ d.getId()
                     +"'>Editar</a>\","
                     +"\"<a href='/geacad/Disciplina?operacao=EXCLUIR"

@@ -5,13 +5,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Carga HorÃ¡ria</th>
-                    <th scope="col">Ementa</th>
-                    <th scope="col">Objetivo</th>
-                    <th scope="col">Bibliografia</th>
-                    <th scope="col">Semestre Recomendado</th>
-                    <th scope="col">Curso</th>
-                    <th scope="col">Professor</th>
+                    <th scope="col">Carga Horaria</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Excluir</th>
                 </tr>

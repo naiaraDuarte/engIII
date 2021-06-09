@@ -25,7 +25,7 @@ public class TurmaVH implements IViewHelper {
     @Override
     public void setView(Object resultado, HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/geacad/faces/ListTurma.xhtml");
+        response.sendRedirect("/geacad/faces/ListTurma.jsp");
     }
     
 }

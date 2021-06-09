@@ -14,7 +14,6 @@ C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\c
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\control\viewhelper\ProfessorVH.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\util\ConnectionConstructor.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\model\dao\IDAO.java
-C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\model\domain\Estado.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\control\tablejson\GeneratorJsonEndereco.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\model\domain\EntidadeDominio.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\control\command\AlterarCommand.java
@@ -26,7 +25,6 @@ C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\c
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\control\command\ExcluirCommand.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\control\tablejson\GeneratorJsonProfessor.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\model\dao\ProfessorDAO.java
-C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\model\domain\Cidade.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\control\tablejson\GeneratorJsonTurma.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\model\domain\Turma.java
 C:\Users\Usuario\Documents\NetBeansProjects\projEngIII\engIII\src\main\java\br\com\fatecmc\geacad\model\domain\Pessoa.java

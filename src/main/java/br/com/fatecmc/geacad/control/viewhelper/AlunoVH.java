@@ -1,10 +1,8 @@
 package br.com.fatecmc.geacad.control.viewhelper;
 
 import br.com.fatecmc.geacad.model.domain.Aluno;
-import br.com.fatecmc.geacad.model.domain.Cidade;
 import br.com.fatecmc.geacad.model.domain.Endereco;
 import br.com.fatecmc.geacad.model.domain.EntidadeDominio;
-import br.com.fatecmc.geacad.model.domain.Estado;
 import br.com.fatecmc.geacad.model.domain.Turma;
 import br.com.fatecmc.geacad.util.ParameterParser;
 import java.io.IOException;
@@ -34,9 +32,12 @@ public class AlunoVH implements IViewHelper {
         String uf = request.getParameter("uf");
         String cep = request.getParameter("cep");
         
-        Estado estado = new Estado(uf);
-        Cidade cid = new Cidade(cidade, estado);
-        Endereco endereco = new Endereco(logradouro, numero, cid, bairro, cep);
+        Endereco endereco = new Endereco();
+        endereco.setLogradouro(logradouro);
+        endereco.setBairro(bairro);
+        endereco.setEstado(uf);
+        endereco.setNumero(numero);
+        endereco.setCep(cep);
         
         Turma turma = new Turma();
         turma.setId(id_turma);
