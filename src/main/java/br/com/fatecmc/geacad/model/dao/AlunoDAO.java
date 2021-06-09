@@ -43,8 +43,6 @@ public class AlunoDAO implements IDAO {
                 if (rs.next()) {
                     id = rs.getInt(1);
                 }
-                
-                
                 EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
                 Endereco endereco = new Endereco();
                 Endereco end = aluno.getEndereco();

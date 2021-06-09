@@ -24,6 +24,7 @@ public class AlunoVH implements IViewHelper {
         String sexo = request.getParameter("sexo");
         int id_aluno = ParameterParser.toInt(request.getParameter("id"));
         String telefone = request.getParameter("telefone");
+        
 
         String logradouro = request.getParameter("logradouro");
         String numero = request.getParameter("numero");
@@ -35,6 +36,7 @@ public class AlunoVH implements IViewHelper {
         Endereco endereco = new Endereco();
         endereco.setLogradouro(logradouro);
         endereco.setBairro(bairro);
+        endereco.setCidade(cidade);
         endereco.setEstado(uf);
         endereco.setNumero(numero);
         endereco.setCep(cep);

@@ -16,12 +16,13 @@ public class ProfessorDAO  implements IDAO{
     @Override
     public int salvar(EntidadeDominio entidade){
         int id = 0;
+         Professor professor = (Professor)entidade;
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "INSERT INTO professores(nome, cpf, telefone, sexo, formacao, fk_endereco, data_nasc, fk_disciplina) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO professor(nome, cpf, telefone, sexo, formacao, data_nasc, fk_disciplina) VALUES(?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = null;
         
         if(entidade instanceof Professor){
@@ -34,14 +35,19 @@ public class ProfessorDAO  implements IDAO{
                 stmt.setString(3, ((Professor) entidade).getTelefone());
                 stmt.setString(4, ((Professor) entidade).getSexo());                
                 stmt.setString(5, ((Professor) entidade).getTitulacao());
-                stmt.setObject(6, ((Professor) entidade).getEndereco());
-                stmt.setDate(7, (Date) ((Professor) entidade).getData_nascimento());
-                stmt.setObject(7, ((Professor) entidade).getDisciplina());
+                stmt.setDate(6, (Date) ((Professor) entidade).getData_nascimento());
+                stmt.setInt(7, ((Professor) entidade).getDisciplina().getId());
                                               
                 stmt.executeUpdate();
                 
                 ResultSet rs = stmt.getGeneratedKeys();
                 if(rs.next()) id = rs.getInt(1);
+                
+                EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
+                Endereco endereco = new Endereco();
+                Endereco end = professor.getEndereco();
+                endereco.setPessoa(professor);
+                enderecoDAO.salvar(end);
                 
                 conn.commit();	
             } catch (SQLException ex) {
@@ -60,7 +66,7 @@ public class ProfessorDAO  implements IDAO{
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "UPDATE professores SET salario=?, titulacao=?, pessoas_id_pessoa=? WHERE id_professor=?";
+        String sql = "UPDATE professor SET salario=?, titulacao=?, pessoas_id_pessoa=? WHERE id_professor=?";
 
         PreparedStatement stmt = null;
         
@@ -94,7 +100,7 @@ public class ProfessorDAO  implements IDAO{
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "DELETE FROM professores WHERE id_professor=?";
+        String sql = "DELETE FROM professor WHERE id_professor=?";
 
         PreparedStatement stmt = null;
 
@@ -118,7 +124,7 @@ public class ProfessorDAO  implements IDAO{
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM professores LEFT JOIN pessoas ON pessoas_id_professor = id_professor";
+        String sql = "SELECT * FROM professor";
         //"SELECT * FROM tb_alunos alu + INNER JOIN tb_endereco ende on alu.id_endereco = ende.id")
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -158,7 +164,7 @@ public class ProfessorDAO  implements IDAO{
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }//acho que isso ta errado
-        String sql = "SELECT * FROM professores LEFT JOIN pessoas ON pessoas_id_professor = id_professor WHERE id_professor=?";
+        String sql = "SELECT * FROM professor LEFT JOIN pessoas ON pessoas_id_professor = id_professor WHERE id_professor=?";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;

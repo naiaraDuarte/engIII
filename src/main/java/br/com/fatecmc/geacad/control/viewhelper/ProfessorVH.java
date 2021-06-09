@@ -1,5 +1,6 @@
 package br.com.fatecmc.geacad.control.viewhelper;
 
+import br.com.fatecmc.geacad.model.domain.Disciplina;
 import br.com.fatecmc.geacad.model.domain.Endereco;
 import br.com.fatecmc.geacad.model.domain.Professor;
 import br.com.fatecmc.geacad.model.domain.EntidadeDominio;
@@ -23,11 +24,27 @@ public class ProfessorVH implements IViewHelper {
         String sexo =      request.getParameter("sexo");
         int id_endereco =  ParameterParser.toInt (request.getParameter("endereco"));
         int id_prof =      ParameterParser.toInt(request.getParameter("id"));
+        int id_disciplina = ParameterParser.toInt(request.getParameter("disciplina"));
+        
+        String logradouro = request.getParameter("logradouro");
+        String numero = request.getParameter("numero");
+        String bairro = request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String uf = request.getParameter("uf");
+        String cep = request.getParameter("cep");
         
         Endereco endereco = new Endereco();
-        endereco.setId(id_endereco); 
+        endereco.setLogradouro(logradouro);
+        endereco.setBairro(bairro);
+        endereco.setCidade(cidade);
+        endereco.setEstado(uf);
+        endereco.setNumero(numero);
+        endereco.setCep(cep);
         
-        Professor professor = new Professor(titulacao, endereco, nome, telefone, cpf, dt_nasc, sexo, id_prof);
+        Disciplina disciplina = new Disciplina();
+        disciplina.setId(id_disciplina);
+        
+        Professor professor = new Professor(titulacao, endereco, disciplina, nome, telefone, cpf, dt_nasc, sexo, id_prof);
         return professor;
     }
 
