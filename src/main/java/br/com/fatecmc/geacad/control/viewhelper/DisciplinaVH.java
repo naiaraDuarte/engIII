@@ -12,7 +12,7 @@ public class DisciplinaVH implements IViewHelper {
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
         String nome =     request.getParameter("nome");
-        int carga_hr =    ParameterParser.toInt(request.getParameter("cargahor"));
+        int carga_hr =    ParameterParser.toInt(request.getParameter("cargah"));
         int id_disci =    ParameterParser.toInt(request.getParameter("id"));
         
         Disciplina disciplina = new Disciplina(nome, carga_hr, id_disci);

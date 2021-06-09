@@ -4,9 +4,9 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">DescriÃ§Ã£o</th>
-                    <th scope="col">Data InÃ­cio</th>
-                    <th scope="col">Curso</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Ano Letivo</th>
+                    <th scope="col">Periodo</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Excluir</th>
                 </tr>

@@ -13,19 +13,19 @@ public class TurmaVH implements IViewHelper {
 
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
-        String descricao = request.getParameter("descricao");
-        String ano =   request.getParameter("datainicio");
-        String periodo =   request.getParameter("periodo");
-        int id_turma =     ParameterParser.toInt(request.getParameter("id"));
-                           
-        Turma turma = new Turma(descricao, ano, periodo, id_turma);
+        String nome = request.getParameter("nome");
+        String ano = request.getParameter("ano");
+        String periodo = request.getParameter("periodo");
+        int id_turma = ParameterParser.toInt(request.getParameter("id"));
+
+        Turma turma = new Turma(nome, ano, periodo, id_turma);
         return turma;
     }
 
     @Override
-    public void setView(Object resultado, HttpServletRequest request, 
+    public void setView(Object resultado, HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("/geacad/faces/ListTurma.jsp");
     }
-    
+
 }

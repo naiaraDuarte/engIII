@@ -36,7 +36,7 @@
 
         <fieldset class="grupo">
             <div class="campo">
-                <label for="periodo">Curso</label>
+                <label for="periodo">Periodo</label>
                 <input type="text" id="periodo" name="periodo" style="width: 20em" value="<%=periodo%>">
             </div>
         </fieldset> 

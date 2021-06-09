@@ -23,7 +23,7 @@ public class TurmaDAO implements IDAO {
             Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         //verificar esse fk_disciplina
-        String sql = "INSERT INTO turmas(nome, ano, periodo, fk_disciplina) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO turma(nome, ano, periodo) VALUES(?, ?, ?)";
 
         PreparedStatement stmt = null;
         
@@ -58,7 +58,7 @@ public class TurmaDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "UPDATE turmas SET nome=?, ano=?, periodo=? WHERE id_turma=?";
+        String sql = "UPDATE turma SET nome=?, ano=?, periodo=? WHERE id_turma=?";
 
         PreparedStatement stmt = null;
         
@@ -87,7 +87,7 @@ public class TurmaDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "DELETE FROM turmas WHERE id_turma=?";
+        String sql = "DELETE FROM turma WHERE id_turma=?";
 
         PreparedStatement stmt = null;
 
@@ -111,7 +111,7 @@ public class TurmaDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM turmas";
+        String sql = "SELECT * FROM turma";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -127,6 +127,7 @@ public class TurmaDAO implements IDAO {
                 
                 turma.setId(rs.getInt("id_turma"));
                 turma.setNome(rs.getString("nome"));
+                turma.setAno(rs.getString("ano"));
                 turma.setPeriodo(rs.getString("periodo"));
                 turmas.add(turma);
             }
@@ -147,7 +148,7 @@ public class TurmaDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM turmas WHERE id_turma=?";
+        String sql = "SELECT * FROM turma WHERE id_turma=?";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;

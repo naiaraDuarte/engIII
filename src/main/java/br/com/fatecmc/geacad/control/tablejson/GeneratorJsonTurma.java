@@ -9,39 +9,40 @@ public class GeneratorJsonTurma implements IGeneratorJson {
     public String gerar(List<EntidadeDominio> entidades) {
         String json = "{\"data\":[]}";
         String data = "";
-        if(!(entidades.isEmpty())) {
+        if (!(entidades.isEmpty())) {
             int totalLista = entidades.size();
             int cont = 1;
-            for(EntidadeDominio e: entidades) {
+            for (EntidadeDominio e : entidades) {
                 Turma t = (Turma) e;
                 data += " ["
-                    +"\""+ t.getId() + "\","
-                    +"\""+ t.getNome() + "\","
-                    +"\""+ t.getAno()+ "\","
-                    +"\"<a href='/geacad/FormTurma.jsp"
-                    +"?descricao="+ t.getNome()
-                    +"&datainicio="+ t.getAno()
-                    +"&id="+ t.getId()
-                    +"'>Editar</a>\","
-                    +"\"<a href='/geacad/Turma?operacao=EXCLUIR"
-                    +"&id="+ t.getId()
-                    +"'>Excluir</a>\""
-                    +"]";
-                if(cont < totalLista){
+                        + "\"" + t.getId() + "\","
+                        + "\"" + t.getNome() + "\","
+                        + "\"" + t.getAno() + "\","
+                        + "\"" + t.getPeriodo()+ "\","
+                        + "\"<a href='/geacad/FormTurma.jsp"
+                        + "?descricao=" + t.getNome()
+                        + "&datainicio=" + t.getAno()
+                        + "&id=" + t.getId()
+                        + "'>Editar</a>\","
+                        + "\"<a href='/geacad/Turma?operacao=EXCLUIR"
+                        + "&id=" + t.getId()
+                        + "'>Excluir</a>\""
+                        + "]";
+                if (cont < totalLista) {
                     data += ",";
                 }
                 cont++;
             }
             json = "{"
-                + "  \"draw\": 1,"
-                + "  \"recordsTotal\": "+ entidades.size() +","
-                + "  \"recordsFiltered\": "+ entidades.size() +","
-                + "  \"data\": ["+
-                data +
-                "]"+
-                "}";
+                    + "  \"draw\": 1,"
+                    + "  \"recordsTotal\": " + entidades.size() + ","
+                    + "  \"recordsFiltered\": " + entidades.size() + ","
+                    + "  \"data\": ["
+                    + data
+                    + "]"
+                    + "}";
         }
         return json;
     }
-    
+
 }

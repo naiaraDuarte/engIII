@@ -3,7 +3,7 @@
 
 <%
     String nome = request.getParameter("nome");
-    String cargahor = request.getParameter("cargahor");
+    String cargahor = request.getParameter("cargah");
     String id = request.getParameter("id");
 
     if (nome == null) {
