@@ -28,8 +28,14 @@ public class EnderecoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+         String sql;
+        String nmClass = this.getClass().getSimpleName();
+        if (nmClass == "ProfessorDAO"){
+           sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_professor) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        }else{
+           sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_aluno) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        }
         
-        String sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_aluno) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = null;
 
