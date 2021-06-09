@@ -14,18 +14,21 @@ public class GeneratorJsonProfessor implements IGeneratorJson{
             int cont = 1;
             for(EntidadeDominio e: entidades) {
                 Professor p = (Professor) e;
-                data += " ["
+                
+                    data += " ["
                     +"\""+ p.getId() + "\","
-                    +"\""+ p.getTitulacao() + "\","
                     +"\""+ p.getNome() + "\","
+                    +"\""+ p.getTitulacao() + "\","
+                    +"\""+ p.getDisciplina().getId() + "\","
                     +"\""+ p.getTelefone()+ "\","
                     +"\""+ p.getCpf()+ "\","
                     +"\""+ p.getData_nascimento()+ "\","
                     +"\""+ p.getSexo()+ "\","
-                    +"\"<a href='/geacad/FormProfessor.jsp"
-                    +"&titulacao="+ p.getTitulacao()
+                    +"\"<a href='/geacad/faces/FormProfessor.jsp"
+                    +"?ra=" +p.getTitulacao()
+                    +"&turma="+ p.getDisciplina().getId()
                     +"&nome="+ p.getNome()
-                    +"&rg="+ p.getTelefone()
+                    +"&telefone="+ p.getTelefone()
                     +"&cpf="+ p.getCpf()
                     +"&datanasc="+ p.getData_nascimento()
                     +"&sexo="+ p.getSexo()

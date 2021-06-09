@@ -4,11 +4,10 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">SalÃ¡rio</th>
-                    <th scope="col">TitulaÃ§Ã£o</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">RG</th>
+                    <th scope="col">Titulação</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Telefone</th>
                     <th scope="col">CPF</th>
                     <th scope="col">Data de Nascimento</th>
                     <th scope="col">Sexo</th>

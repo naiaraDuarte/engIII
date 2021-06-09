@@ -16,18 +16,20 @@
     if (id == null)
         id = "";
 %>
-
+<div class="conteudo">
+    <div class="titulo">
+        <h3> <i class="fas fa-angle-right"></i> Disciplina</h3>
+    </div>
+    <hr/>
 <form action="./Disciplina" method="post">
-    <fieldset>
-
-        <fieldset class="grupo">
-            <div class="campo">
+    <div class="form-row">
+            <div class="form-group col-md-6">
                 <label for="nome">Nome</label>
                 <input type="text" id="nome" name="nome" style="width: 20em" value="<%=nome%>">
             </div>
-        </fieldset> 
+        </div> 
 
-        <div class="campo">
+        <div class="form-group col-md-6">
             <label for="cargah">Carga Horária</label>
             <input type="text" id="cargah" name="cargah" style="width: 20em" value="<%=cargahor%>">
         </div>

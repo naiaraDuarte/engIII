@@ -63,7 +63,7 @@
 
 <div class="conteudo">
     <div class="titulo">
-        <h3> <i class="fas fa-angle-right"></i> Aluno</h3>
+        <h3> <i class="fas fa-angle-right"></i> Professor</h3>
     </div>
     <hr/>
 
