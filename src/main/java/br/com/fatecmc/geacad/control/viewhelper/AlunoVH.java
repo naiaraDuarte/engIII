@@ -6,6 +6,7 @@ import br.com.fatecmc.geacad.model.domain.EntidadeDominio;
 import br.com.fatecmc.geacad.model.domain.Turma;
 import br.com.fatecmc.geacad.util.ParameterParser;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +54,19 @@ public class AlunoVH implements IViewHelper {
     @Override
     public void setView(Object resultado, HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out;
+		try {
+			out = response.getWriter();
+			if (resultado != null) {
+				out.println(resultado);
+			} else {
+				out.println("<h1>Aluno cadastrado!</h1>");
+                                
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
         response.sendRedirect("/geacad/faces/ListAluno.jsp");
     }
 

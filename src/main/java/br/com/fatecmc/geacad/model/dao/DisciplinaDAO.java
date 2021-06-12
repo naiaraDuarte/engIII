@@ -135,7 +135,11 @@ public class DisciplinaDAO implements IDAO {
     }
     
     @Override
-    public List consultar(int id) {
+    public List<EntidadeDominio> consultar(EntidadeDominio arg0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List consultarId(int id) {
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {

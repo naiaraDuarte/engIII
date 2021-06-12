@@ -1,6 +1,5 @@
 package br.com.fatecmc.geacad.control;
 
-import br.com.fatecmc.geacad.control.tablejson.GeneratorJsonEndereco;
 import br.com.fatecmc.geacad.control.tablejson.*;
 import br.com.fatecmc.geacad.control.command.ConsultarCommand;
 import java.io.IOException;

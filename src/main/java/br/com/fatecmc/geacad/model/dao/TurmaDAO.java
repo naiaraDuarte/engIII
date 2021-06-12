@@ -142,7 +142,7 @@ public class TurmaDAO implements IDAO {
     }
     
     @Override
-    public List consultar(int id) {
+    public List consultarId(int id) {
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -176,6 +176,11 @@ public class TurmaDAO implements IDAO {
             ConnectionConstructor.closeConnection(conn, stmt, rs);
         }
         return null;
+    }
+
+    @Override
+    public List<EntidadeDominio> consultar(EntidadeDominio arg0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

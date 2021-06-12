@@ -138,11 +138,11 @@ public class ProfessorDAO  implements IDAO{
                 Professor professor = new Professor();
 
                 professor.setId(rs.getInt("id_professor"));
-                professor.setTitulacao(rs.getString("titulacao"));
+                professor.setTitulacao(rs.getString("formacao"));
                 professor.setNome(rs.getString("nome"));
                 professor.setTelefone(rs.getString("telefone"));
                 professor.setCpf(rs.getString("cpf"));
-                professor.setData_nascimento(rs.getDate("data_nascimento"));
+                professor.setData_nascimento(rs.getDate("data_nasc"));
                 professor.setSexo(rs.getString("sexo"));
                 
                 professores.add(professor);
@@ -158,7 +158,7 @@ public class ProfessorDAO  implements IDAO{
     }
     
     @Override
-    public List consultar(int id) {
+    public List consultarId(int id) {
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -197,6 +197,11 @@ public class ProfessorDAO  implements IDAO{
             ConnectionConstructor.closeConnection(conn, stmt, rs);
         }
         return null;
+    }
+
+    @Override
+    public List<EntidadeDominio> consultar(EntidadeDominio arg0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -15,9 +15,9 @@ public class EnderecoDAO implements IDAO {
 
     public EnderecoDAO() {
     }
-    
+
     public EnderecoDAO(Connection conn) {
-     this.conn = conn;
+        this.conn = conn;
     }
 
     @Override
@@ -25,17 +25,19 @@ public class EnderecoDAO implements IDAO {
         int id = 0;
         try {
             this.conn = ConnectionConstructor.getConnection();
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-         String sql;
+
+        String sql;
         String nmClass = this.getClass().getSimpleName();
-        if (nmClass == "ProfessorDAO"){
-           sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_professor) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        }else{
-           sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_aluno) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        if (nmClass == "ProfessorDAO") {
+            sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_professor) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        } else {
+            sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_aluno) VALUES(?, ?, ?, ?, ?, ?, ?)";
         }
-        
 
         PreparedStatement stmt = null;
 
@@ -51,8 +53,6 @@ public class EnderecoDAO implements IDAO {
                 stmt.setString(5, ((Endereco) entidade).getBairro());
                 stmt.setString(6, ((Endereco) entidade).getCep());
                 stmt.setInt(7, 4);
-                
-                        
 
                 stmt.executeUpdate();
 
@@ -170,8 +170,8 @@ public class EnderecoDAO implements IDAO {
         return null;
     }
 
-    @Override
-    public List consultar(int id) {
+ 
+    public List consultarId(int id) {
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -208,6 +208,11 @@ public class EnderecoDAO implements IDAO {
             ConnectionConstructor.closeConnection(conn, stmt, rs);
         }
         return null;
+    }
+
+    @Override
+    public List<EntidadeDominio> consultar(EntidadeDominio arg0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

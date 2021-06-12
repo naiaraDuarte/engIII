@@ -1,12 +1,14 @@
 package br.com.fatecmc.geacad.model.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Professor extends Pessoa {
     private String titulacao;
     private  Endereco endereco;
+    private ArrayList <Disciplina> disciplinas;
     private Disciplina disciplina;
-
+    
     public Professor() {
     }
 
@@ -59,6 +61,14 @@ public class Professor extends Pessoa {
 
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
+    }
+
+    public ArrayList<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
 
         

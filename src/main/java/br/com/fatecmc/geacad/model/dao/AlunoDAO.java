@@ -15,7 +15,7 @@ public class AlunoDAO implements IDAO {
     @Override
     public int salvar(EntidadeDominio entidade) {
         int id = 0;
-        Aluno aluno = (Aluno)entidade;
+        Aluno aluno = (Aluno) entidade;
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -29,13 +29,13 @@ public class AlunoDAO implements IDAO {
                 conn.setAutoCommit(false);
 
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                stmt.setString(1, ((Aluno) entidade).getRa());
-                stmt.setString(2, ((Aluno) entidade).getCpf());
-                stmt.setString(3, ((Aluno) entidade).getTelefone());
-                stmt.setDate(4, (Date) ((Aluno) entidade).getData_nascimento());
-                stmt.setString(5, ((Aluno) entidade).getSexo());
-                stmt.setInt(6, ((Aluno) entidade).getTurma().getId());
-                stmt.setString(7, ((Aluno) entidade).getNome());
+                stmt.setString(1, aluno.getRa());
+                stmt.setString(2, aluno.getCpf());
+                stmt.setString(3, aluno.getTelefone());
+                stmt.setDate(4, (Date) aluno.getData_nascimento());
+                stmt.setString(5, aluno.getSexo());
+                stmt.setInt(6, aluno.getTurma().getId());
+                stmt.setString(7, aluno.getNome());
 
                 stmt.executeUpdate();
 
@@ -61,6 +61,7 @@ public class AlunoDAO implements IDAO {
 
     @Override
     public boolean alterar(EntidadeDominio entidade) {
+        Aluno aluno = (Aluno) entidade;
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -73,14 +74,14 @@ public class AlunoDAO implements IDAO {
         if (entidade instanceof Aluno) {
             try {
                 stmt = conn.prepareStatement(sql);
-                stmt.setString(1, ((Aluno) entidade).getRa());
-                stmt.setString(2, ((Aluno) entidade).getCpf());
-                stmt.setString(3, ((Aluno) entidade).getTelefone());
-                stmt.setDate(4, (Date) ((Aluno) entidade).getData_nascimento());
-                stmt.setString(5, ((Aluno) entidade).getSexo());
-                stmt.setInt(6, ((Aluno) entidade).getTurma().getId());
-                stmt.setInt(7, ((Aluno) entidade).getEndereco().getId());
-                stmt.setString(8, ((Aluno) entidade).getNome());
+                stmt.setString(1, aluno.getRa());
+                stmt.setString(2, aluno.getCpf());
+                stmt.setString(3, aluno.getTelefone());
+                stmt.setDate(4, (Date) aluno.getData_nascimento());
+                stmt.setString(5, aluno.getSexo());
+                stmt.setInt(6, aluno.getTurma().getId());
+                stmt.setInt(7, aluno.getEndereco().getId());
+                stmt.setString(8, aluno.getNome());
 
                 if (stmt.executeUpdate() == 1) {
                     return true;
@@ -168,7 +169,14 @@ public class AlunoDAO implements IDAO {
     }
 
     @Override
-    public List consultar(int id) {
+    public List<EntidadeDominio> consultar(EntidadeDominio entidade) {
+        // o consultar do prof esta diferente, não é uma consulta no banco;
+        		
+		return null;
+    }
+
+    @Override
+    public List consultarId(int id) {
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -179,7 +187,7 @@ public class AlunoDAO implements IDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<Aluno> alunos = new ArrayList<>();
+        List<EntidadeDominio> alunos = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -211,5 +219,4 @@ public class AlunoDAO implements IDAO {
         }
         return null;
     }
-
 }
