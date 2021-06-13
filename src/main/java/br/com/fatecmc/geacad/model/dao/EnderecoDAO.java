@@ -31,13 +31,8 @@ public class EnderecoDAO implements IDAO {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String sql;
-        String nmClass = this.getClass().getSimpleName();
-        if (nmClass == "ProfessorDAO") {
-            sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_professor) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        } else {
-            sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep, fk_aluno) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        }
+        String sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep) VALUES(?, ?, ?, ?, ?, ?)";
+        
 
         PreparedStatement stmt = null;
 
@@ -52,7 +47,7 @@ public class EnderecoDAO implements IDAO {
                 stmt.setString(4, ((Endereco) entidade).getEstado());
                 stmt.setString(5, ((Endereco) entidade).getBairro());
                 stmt.setString(6, ((Endereco) entidade).getCep());
-                stmt.setInt(7, 4);
+                //stmt.setInt(7, 4);
 
                 stmt.executeUpdate();
 

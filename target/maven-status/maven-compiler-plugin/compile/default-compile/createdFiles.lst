@@ -1,7 +1,6 @@
 br\com\fatecmc\geacad\control\tablejson\IGeneratorJson.class
 br\com\fatecmc\geacad\control\viewhelper\AlunoVH.class
 br\com\fatecmc\geacad\model\dao\TurmaDAO.class
-br\com\fatecmc\geacad\model\strategy\ValidarCargaHoraria.class
 br\com\fatecmc\geacad\control\command\SalvarCommand.class
 br\com\fatecmc\geacad\control\TableConstructor.class
 br\com\fatecmc\geacad\util\ParameterParser.class

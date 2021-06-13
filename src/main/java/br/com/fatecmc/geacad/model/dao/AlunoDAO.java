@@ -21,15 +21,21 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "INSERT INTO aluno(ra, cpf, telefone, data_nasc, sexo, fk_turma, nome) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO aluno(ra, cpf, telefone, data_nasc, sexo, fk_turma, nome, fk_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = null;
+
+        EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
+        Endereco endereco = new Endereco();
+        Endereco end = aluno.getEndereco();
+        end.setId(enderecoDAO.salvar(end));
+        aluno.setEndereco(end);
         
         if (entidade instanceof Aluno) {
             try {
                 conn.setAutoCommit(false);
-                 
+
                 Date convertedDate = new java.sql.Date(aluno.getData_nascimento().getTime());
-                
+
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, aluno.getRa());
                 stmt.setString(2, aluno.getCpf());
@@ -38,18 +44,14 @@ public class AlunoDAO implements IDAO {
                 stmt.setString(5, aluno.getSexo());
                 stmt.setInt(6, aluno.getTurma().getId());
                 stmt.setString(7, aluno.getNome());
-
+                stmt.setInt(8, aluno.getEndereco().getId());
+                
                 stmt.executeUpdate();
 
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
                     id = rs.getInt(1);
                 }
-                EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
-                Endereco endereco = new Endereco();
-                Endereco end = aluno.getEndereco();
-                endereco.setPessoa(aluno);
-                enderecoDAO.salvar(end);
 
                 conn.commit();
             } catch (SQLException ex) {
@@ -75,16 +77,19 @@ public class AlunoDAO implements IDAO {
 
         if (entidade instanceof Aluno) {
             try {
+                Date convertedDate = new java.sql.Date(aluno.getData_nascimento().getTime());
+                
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, aluno.getRa());
                 stmt.setString(2, aluno.getCpf());
                 stmt.setString(3, aluno.getTelefone());
-                stmt.setDate(4, (Date) aluno.getData_nascimento());
+                stmt.setDate(4, convertedDate );
                 stmt.setString(5, aluno.getSexo());
                 stmt.setInt(6, aluno.getTurma().getId());
                 stmt.setInt(7, aluno.getEndereco().getId());
                 stmt.setString(8, aluno.getNome());
-
+                stmt.setInt(9, aluno.getId());
+                
                 if (stmt.executeUpdate() == 1) {
                     return true;
                 }
@@ -96,7 +101,6 @@ public class AlunoDAO implements IDAO {
         }
         return false;
     }
-
     @Override
     public boolean excluir(int id) {
         try {
@@ -173,8 +177,8 @@ public class AlunoDAO implements IDAO {
     @Override
     public List<EntidadeDominio> consultar(EntidadeDominio entidade) {
         // o consultar do prof esta diferente, não é uma consulta no banco;
-        		
-		return null;
+
+        return null;
     }
 
     @Override

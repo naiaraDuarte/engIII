@@ -18,7 +18,7 @@ public class ValidarMatriculaAluno implements IStrategy {
             StringBuilder sb = new StringBuilder();
             //Incluir os outros campos
             if (nome == null || ra == null) {
-                sb.append("Nome, e Ra são de preenchimento obrigatorio!");
+                sb.append("Todos os dados são obrigatorios");
             } else if (nome.trim().equals("") || ra.trim().equals("")) {
                 sb.append("Nome, e Ra são de preenchimento obrigatorio!");
             }

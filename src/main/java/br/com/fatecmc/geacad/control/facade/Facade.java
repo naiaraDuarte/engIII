@@ -28,12 +28,12 @@ public class Facade implements IFacade {
 
         ValidarExistencia validar_existencia = new ValidarExistencia();
         ValidarCpf validar_cpf = new ValidarCpf();
+        //ValidarCpf validar_cpf1 = new ValidarCpf();
         ValidarTurma validar_turma = new ValidarTurma();
         //ValidarLimiteAlunosTurma validar_limite_alunos_turma = new ValidarLimiteAlunosTurma();
         ValidarMatriculaAluno validar_matricula_aluno = new ValidarMatriculaAluno();
         ValidarDisciplina validar_disciplina = new ValidarDisciplina();
-        ValidarCargaHoraria validar_carga_horaria = new ValidarCargaHoraria();
-
+       
         List<IStrategy> rns_aluno = new ArrayList<>();
         rns_aluno.add(validar_turma);
         rns_aluno.add(validar_matricula_aluno);
@@ -50,7 +50,7 @@ public class Facade implements IFacade {
         //rns_disciplina.add(validar_disciplina);
 
         List<IStrategy> rns_professor = new ArrayList<>();
-        //rns_professor.add(validar_cpf);
+        rns_professor.add(validar_cpf);
         //rns_professor.add(validar_existencia);
         rns_professor.add(validar_disciplina);
 

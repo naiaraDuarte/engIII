@@ -57,7 +57,7 @@ public class AlunoVH implements IViewHelper {
         try {
             out = response.getWriter();
             if (resultado != null) {
-                //response.sendRedirect("/geacad/faces/FormAluno.jsp?erro="+resultado);
+                
                 out.println(resultado);
             } else {
                 response.sendRedirect("/geacad/faces/ListAluno.jsp");
