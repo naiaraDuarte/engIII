@@ -23,10 +23,3 @@ public class ValidarCpf implements IStrategy {
         return null;
     }
 }
-    /*boolean validarCpf = false;
-        
-        if(validarCpf)
-            
-            return "Cpf deve conter 11 digitos";
-        
-        return null;*/

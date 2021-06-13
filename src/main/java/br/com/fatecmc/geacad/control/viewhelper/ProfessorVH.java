@@ -33,18 +33,18 @@ public class ProfessorVH implements IViewHelper {
         String uf = request.getParameter("uf");
         String cep = request.getParameter("cep");
         
-        Endereco endereco = new Endereco();
-        endereco.setLogradouro(logradouro);
-        endereco.setBairro(bairro);
-        endereco.setCidade(cidade);
-        endereco.setEstado(uf);
-        endereco.setNumero(numero);
-        endereco.setCep(cep);
+        Endereco end = new Endereco();
+        end.setLogradouro(logradouro);
+        end.setBairro(bairro);
+        end.setCidade(cidade);
+        end.setEstado(uf);
+        end.setNumero(numero);
+        end.setCep(cep);
         
         Disciplina disciplina = new Disciplina();
         disciplina.setId(id_disciplina);
         
-        Professor professor = new Professor(titulacao, endereco, disciplina, nome, telefone, cpf, dt_nasc, sexo, id_prof);
+        Professor professor = new Professor(titulacao, end, disciplina, nome, telefone, cpf, dt_nasc, sexo, id_prof);
         return professor;
     }
 

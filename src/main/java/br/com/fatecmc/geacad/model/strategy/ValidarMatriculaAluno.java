@@ -30,7 +30,11 @@ public class ValidarMatriculaAluno implements IStrategy {
                 sb.append(msgEnd);
 
             }
-            return msgEnd;
+            if (sb.length() > 0) {
+                return sb.toString();
+            } else {
+                return null;
+            }
 
         }
         return null;

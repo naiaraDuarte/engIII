@@ -23,16 +23,18 @@ public class AlunoDAO implements IDAO {
         }
         String sql = "INSERT INTO aluno(ra, cpf, telefone, data_nasc, sexo, fk_turma, nome) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = null;
-
+        
         if (entidade instanceof Aluno) {
             try {
                 conn.setAutoCommit(false);
-
+                 
+                Date convertedDate = new java.sql.Date(aluno.getData_nascimento().getTime());
+                
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, aluno.getRa());
                 stmt.setString(2, aluno.getCpf());
                 stmt.setString(3, aluno.getTelefone());
-                stmt.setDate(4, (Date) aluno.getData_nascimento());
+                stmt.setDate(4, convertedDate);
                 stmt.setString(5, aluno.getSexo());
                 stmt.setInt(6, aluno.getTurma().getId());
                 stmt.setString(7, aluno.getNome());

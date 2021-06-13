@@ -25,7 +25,6 @@ public class AlunoVH implements IViewHelper {
         String sexo = request.getParameter("sexo");
         int id_aluno = ParameterParser.toInt(request.getParameter("id"));
         String telefone = request.getParameter("telefone");
-        
 
         String logradouro = request.getParameter("logradouro");
         String numero = request.getParameter("numero");
@@ -33,20 +32,20 @@ public class AlunoVH implements IViewHelper {
         String cidade = request.getParameter("cidade");
         String uf = request.getParameter("uf");
         String cep = request.getParameter("cep");
-        
-        Endereco endereco = new Endereco();
-        endereco.setLogradouro(logradouro);
-        endereco.setBairro(bairro);
-        endereco.setCidade(cidade);
-        endereco.setEstado(uf);
-        endereco.setNumero(numero);
-        endereco.setCep(cep);
-        
+
+        Endereco end = new Endereco();
+        end.setLogradouro(logradouro);
+        end.setBairro(bairro);
+        end.setCidade(cidade);
+        end.setEstado(uf);
+        end.setNumero(numero);
+        end.setCep(cep);
+
         Turma turma = new Turma();
         turma.setId(id_turma);
 
-        Aluno aluno = new Aluno(ra, turma, endereco, nome, telefone, cpf, dt_nasc, sexo, id_aluno);
-        aluno.setEndereco(endereco);
+        Aluno aluno = new Aluno(ra, turma, end, nome, telefone, cpf, dt_nasc, sexo, id_aluno);
+        aluno.setEndereco(end);
         //String ra, Turma turma, Endereco endereco, String nome, String telefone, String cpf, Date data_nascimento, String sexo, int id
         return aluno;
     }
@@ -55,19 +54,20 @@ public class AlunoVH implements IViewHelper {
     public void setView(Object resultado, HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out;
-		try {
-			out = response.getWriter();
-			if (resultado != null) {
-				out.println(resultado);
-			} else {
-				out.println("<h1>Aluno cadastrado!</h1>");
-                                
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-        response.sendRedirect("/geacad/faces/ListAluno.jsp");
+        try {
+            out = response.getWriter();
+            if (resultado != null) {
+                //response.sendRedirect("/geacad/faces/FormAluno.jsp?erro="+resultado);
+                out.println(resultado);
+            } else {
+                response.sendRedirect("/geacad/faces/ListAluno.jsp");
+
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // response.sendRedirect("/geacad/faces/ListAluno.jsp");
     }
 
 }

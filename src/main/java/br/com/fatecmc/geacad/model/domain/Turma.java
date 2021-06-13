@@ -17,6 +17,13 @@ public class Turma extends EntidadeDominio {
 
     }
 
+    public Turma(String nome, String ano, String periodo, ArrayList<Aluno> alunos) {
+        this.nome = nome;
+        this.ano = ano;
+        this.periodo = periodo;
+        this.alunos = alunos;
+    }
+
     public Turma(String nome, String ano, String periodo) {
         this.nome = nome;
         this.ano = ano;

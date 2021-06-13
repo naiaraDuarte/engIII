@@ -1,6 +1,5 @@
 package br.com.fatecmc.geacad.control.viewhelper;
 
-import br.com.fatecmc.geacad.model.domain.Disciplina;
 import br.com.fatecmc.geacad.model.domain.Turma;
 import br.com.fatecmc.geacad.model.domain.EntidadeDominio;
 import br.com.fatecmc.geacad.util.ParameterParser;
