@@ -22,7 +22,7 @@ public class ProfessorVH implements IViewHelper {
         String cpf =       request.getParameter("cpf");
         Date dt_nasc =     ParameterParser.toDate(request.getParameter("datanasc"));
         String sexo =      request.getParameter("sexo");
-        int id_endereco =  ParameterParser.toInt (request.getParameter("endereco"));
+        //int id_endereco =  ParameterParser.toInt (request.getParameter("endereco"));
         int id_prof =      ParameterParser.toInt(request.getParameter("id"));
         int id_disciplina = ParameterParser.toInt(request.getParameter("disciplina"));
         
@@ -41,6 +41,7 @@ public class ProfessorVH implements IViewHelper {
         end.setNumero(numero);
         end.setCep(cep);
         
+        
         Disciplina disciplina = new Disciplina();
         disciplina.setId(id_disciplina);
         
@@ -50,8 +51,22 @@ public class ProfessorVH implements IViewHelper {
 
     @Override
     public void setView(Object resultado, HttpServletRequest request, 
-            HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/geacad/faces/ListProfessor.jsp");
+            HttpServletResponse response) throws ServletException, IOException { PrintWriter out;
+        try {
+            out = response.getWriter();
+            if (resultado != null) {
+                //response.sendRedirect("/geacad/faces/FormAluno.jsp?erro="+resultado);
+                out.println(resultado);
+            } else {
+                response.sendRedirect("/geacad/faces/ListProfessor.jsp");
+
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // response.sendRedirect("/geacad/faces/ListAluno.jsp");
+    
     }
     
 }

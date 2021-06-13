@@ -3,7 +3,7 @@ package br.com.fatecmc.geacad.control.tablejson;
 import br.com.fatecmc.geacad.model.domain.*;
 import java.util.List;
 
-public class GeneratorJsonProfessor implements IGeneratorJson{
+public class GeneratorJsonProfessor implements IGeneratorJson {
 
     @Override
     public String gerar(List<EntidadeDominio> entidades) {
@@ -14,27 +14,27 @@ public class GeneratorJsonProfessor implements IGeneratorJson{
             int cont = 1;
             for(EntidadeDominio e: entidades) {
                 Professor p = (Professor) e;
-                
-                    data += " ["
-                    +"\""+ p.getId() + "\","
-                    +"\""+ p.getNome() + "\","
+                data += " ["
+                    //+"\""+ p.getId() + "\","
+                    //+"\""+ p.getNome() + "\","
                     +"\""+ p.getTitulacao() + "\","
+                    /*+"\""+ p.getDisciplina().getId() + "\","
                     +"\""+ p.getTelefone()+ "\","
                     +"\""+ p.getCpf()+ "\","
                     +"\""+ p.getData_nascimento()+ "\","
-                    +"\""+ p.getSexo()+ "\","
+                    +"\""+ p.getSexo()+ "\","*/
                     +"\"<a href='/geacad/faces/FormProfessor.jsp"
-                    +"?ra=" +p.getTitulacao()
-                    +"&disciplina="+ p.getDisciplina().getId()
+                    +"?titulacao=" + p.getTitulacao()
+                    /*+"&disciplina="+ p.getDisciplina()
                     +"&nome="+ p.getNome()
                     +"&telefone="+ p.getTelefone()
                     +"&cpf="+ p.getCpf()
                     +"&datanasc="+ p.getData_nascimento()
                     +"&sexo="+ p.getSexo()
-                    +"&id="+ p.getId()
+                    +"&id="+ p.getId()*/
                     +"'>Editar</a>\","
                     +"\"<a href='/geacad/Professor?operacao=EXCLUIR"
-                    +"&id="+ p.getId()
+                    //+"&id="+ p.getId()
                     +"'>Excluir</a>\""
                     +"]";
                 if(cont < totalLista){

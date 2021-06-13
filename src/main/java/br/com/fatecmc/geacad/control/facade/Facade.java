@@ -52,7 +52,7 @@ public class Facade implements IFacade {
         List<IStrategy> rns_professor = new ArrayList<>();
         //rns_professor.add(validar_cpf);
         //rns_professor.add(validar_existencia);
-        // rns_professor.add(validar_carga_horaria);
+        rns_professor.add(validar_disciplina);
 
         List<IStrategy> rns_turma = new ArrayList<>();
 

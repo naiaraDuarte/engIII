@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Professor extends Pessoa {
     private String titulacao;
-    private  Endereco endereco;
+    private Endereco endereco;
     private ArrayList <Disciplina> disciplinas;
     private Disciplina disciplina;
     
@@ -37,6 +37,7 @@ public class Professor extends Pessoa {
         this.titulacao = titulacao;
         this.endereco = endereco;
         this.disciplina = disciplina;
+        
     }
 
     public String getTitulacao() {
