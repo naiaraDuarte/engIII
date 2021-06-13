@@ -69,22 +69,24 @@ public class AlunoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "UPDATE aluno SET ra=?, cpf=?, telefone=?, data_nasc=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
+        String sql = "UPDATE aluno SET ra=?, cpf=?, telefone=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
 
         PreparedStatement stmt = null;
 
         if (entidade instanceof Aluno) {
             try {
+                //Date convertedDate = new java.sql.Date(aluno.getData_nascimento().getTime());
+                
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, aluno.getRa());
                 stmt.setString(2, aluno.getCpf());
                 stmt.setString(3, aluno.getTelefone());
-                stmt.setDate(4, (Date) aluno.getData_nascimento());
-                stmt.setString(5, aluno.getSexo());
-                stmt.setInt(6, aluno.getTurma().getId());
-                stmt.setInt(7, aluno.getEndereco().getId());
-                stmt.setString(8, aluno.getNome());
-
+                stmt.setString(4, aluno.getSexo());
+                stmt.setInt(5, 1);
+                stmt.setInt(6, 1);
+                stmt.setString(7, aluno.getNome());
+                stmt.setInt(8, aluno.getId());
+                
                 if (stmt.executeUpdate() == 1) {
                     return true;
                 }
@@ -154,11 +156,12 @@ public class AlunoDAO implements IDAO {
                 aluno.setSexo(rs.getString("sexo"));
                 //aluno.setEndereco(rs.getString("Endereco"));
                 //aluno.setEndereco;
-
+                
                 turma.setId(rs.getInt("fk_turma"));
-
                 aluno.setTurma(turma);
+                
                 alunos.add(aluno);
+                
             }
 
             return alunos;
