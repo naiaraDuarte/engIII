@@ -17,7 +17,8 @@
     String cidade = request.getParameter("cidade");
     String uf = request.getParameter("uf");
     String cep = request.getParameter("cep");
-
+    String id_endereco = request.getParameter("id_endereco");
+    
     if (ra == null) {
         ra = "";
     }
@@ -117,6 +118,7 @@
                     </label>
                 </div>
                 <input type="hidden" id="id" name="id" value="<%=id%>">
+                <input type="hidden" id="id_endereco" name="id_endereco" value="<%=id_endereco%>">
             </div>
         </div>
         <div class="titulo">

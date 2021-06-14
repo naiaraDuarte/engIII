@@ -25,6 +25,7 @@ public class AlunoVH implements IViewHelper {
         String sexo = request.getParameter("sexo");
         int id_aluno = ParameterParser.toInt(request.getParameter("id"));
         String telefone = request.getParameter("telefone");
+        Integer id_endereco = ParameterParser.toInt(request.getParameter("id_endereco"));
 
         String logradouro = request.getParameter("logradouro");
         String numero = request.getParameter("numero");
@@ -43,9 +44,15 @@ public class AlunoVH implements IViewHelper {
 
         Turma turma = new Turma();
         turma.setId(id_turma);
-
+        
         Aluno aluno = new Aluno(ra, turma, end, nome, telefone, cpf, dt_nasc, sexo, id_aluno);
-        aluno.setEndereco(end);
+        
+        if (id_endereco != 0) {
+            end.setId(id_endereco);
+            aluno.setEndereco(end);
+        }else{
+            aluno.setEndereco(end);
+        }
         //String ra, Turma turma, Endereco endereco, String nome, String telefone, String cpf, Date data_nascimento, String sexo, int id
         return aluno;
     }
@@ -57,7 +64,7 @@ public class AlunoVH implements IViewHelper {
         try {
             out = response.getWriter();
             if (resultado != null) {
-                
+
                 out.println(resultado);
             } else {
                 response.sendRedirect("/geacad/faces/ListAluno.jsp");

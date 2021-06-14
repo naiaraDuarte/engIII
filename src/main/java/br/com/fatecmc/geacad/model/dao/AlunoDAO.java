@@ -29,7 +29,7 @@ public class AlunoDAO implements IDAO {
         Endereco end = aluno.getEndereco();
         end.setId(enderecoDAO.salvar(end));
         aluno.setEndereco(end);
-        
+
         if (entidade instanceof Aluno) {
             try {
                 conn.setAutoCommit(false);
@@ -45,7 +45,7 @@ public class AlunoDAO implements IDAO {
                 stmt.setInt(6, aluno.getTurma().getId());
                 stmt.setString(7, aluno.getNome());
                 stmt.setInt(8, aluno.getEndereco().getId());
-                
+
                 stmt.executeUpdate();
 
                 ResultSet rs = stmt.getGeneratedKeys();
@@ -66,41 +66,53 @@ public class AlunoDAO implements IDAO {
     @Override
     public boolean alterar(EntidadeDominio entidade) {
         Aluno aluno = (Aluno) entidade;
+        int fk_endereco = 0;
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "UPDATE aluno SET ra=?, cpf=?, telefone=?, data_nasc=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
 
         PreparedStatement stmt = null;
+        ResultSet rs = null;
 
-        if (entidade instanceof Aluno) {
-            try {
-                Date convertedDate = new java.sql.Date(aluno.getData_nascimento().getTime());
-                
-                stmt = conn.prepareStatement(sql);
-                stmt.setString(1, aluno.getRa());
-                stmt.setString(2, aluno.getCpf());
-                stmt.setString(3, aluno.getTelefone());
-                stmt.setDate(4, convertedDate );
-                stmt.setString(5, aluno.getSexo());
-                stmt.setInt(6, aluno.getTurma().getId());
-                stmt.setInt(7, aluno.getEndereco().getId());
-                stmt.setString(8, aluno.getNome());
-                stmt.setInt(9, aluno.getId());
-                
-                if (stmt.executeUpdate() == 1) {
-                    return true;
+        try {
+
+            String sql = "UPDATE aluno SET ra=?, cpf=?, telefone=?, data_nasc=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
+            stmt = conn.prepareStatement(sql);
+            
+            if (entidade instanceof Aluno) {
+                try {
+                    Date convertedDate = new java.sql.Date(aluno.getData_nascimento().getTime());
+
+                    stmt = conn.prepareStatement(sql);
+                    stmt.setString(1, aluno.getRa());
+                    stmt.setString(2, aluno.getCpf());
+                    stmt.setString(3, aluno.getTelefone());
+                    stmt.setDate(4, convertedDate);
+                    stmt.setString(5, aluno.getSexo());
+                    stmt.setInt(6, aluno.getTurma().getId());
+                    stmt.setInt(7, aluno.getEndereco().getId());
+                    stmt.setString(8, aluno.getNome());
+                    stmt.setInt(9, aluno.getId());
+
+                    if (stmt.executeUpdate() == 1) {
+                        return true;
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Não foi possível alterar os dados no banco de dados.\nErro: " + ex.getMessage());
+                } finally {
+                    ConnectionConstructor.closeConnection(conn, stmt);
                 }
-            } catch (SQLException ex) {
-                System.out.println("Não foi possível alterar os dados no banco de dados.\nErro: " + ex.getMessage());
-            } finally {
-                ConnectionConstructor.closeConnection(conn, stmt);
             }
+
+        } catch (Exception e) {
+
         }
+
         return false;
     }
+
     @Override
     public boolean excluir(int id) {
         try {
@@ -156,8 +168,9 @@ public class AlunoDAO implements IDAO {
                 aluno.setCpf(rs.getString("cpf"));
                 aluno.setData_nascimento(rs.getDate("data_nasc"));
                 aluno.setSexo(rs.getString("sexo"));
-                //aluno.setEndereco(rs.getString("Endereco"));
-                //aluno.setEndereco;
+
+                endereco.setId(rs.getInt("fk_endereco"));
+                aluno.setEndereco(endereco);
 
                 turma.setId(rs.getInt("fk_turma"));
 
