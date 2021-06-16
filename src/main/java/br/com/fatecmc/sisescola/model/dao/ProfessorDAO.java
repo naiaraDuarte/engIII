@@ -25,7 +25,7 @@ public class ProfessorDAO implements IDAO {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         String sql = "INSERT INTO professor(nome, cpf, telefone, sexo, formacao, data_nasc, fk_disciplina, fk_endereco) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-        //nome, cpf, telefone, sexo, formacao, data_nasc, fk_disciplina)
+        
         PreparedStatement stmt = null;
 
         EnderecoDAO enderecoDAO = new EnderecoDAO(conn);

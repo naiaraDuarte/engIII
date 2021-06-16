@@ -240,9 +240,42 @@ public class AlunoDAO implements IDAO {
         }
         return null;
     }
+    public Aluno consult(String cpf) {
+        Aluno aluno = new Aluno();
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "SELECT * FROM aluno WHERE cpf=?";
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, cpf);
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                
+                aluno.setId(rs.getInt("id_aluno"));
+                
+            }
+
+            return aluno;
+        } catch (SQLException ex) {
+            System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
+        } finally {
+            ConnectionConstructor.closeConnection(conn, stmt, rs);
+        }
+        return null;
+    }
 
     @Override
     public List<EntidadeDominio> consultar(EntidadeDominio arg0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

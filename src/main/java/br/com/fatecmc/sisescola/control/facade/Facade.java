@@ -66,12 +66,12 @@ public class Facade implements IFacade {
         //rns_professor.add(validar_existencia);
         rns_professor.add(validar_disciplina);
 
-        List<IStrategy> rns_turma = new ArrayList<>();
+        //List<IStrategy> rns_turma = new ArrayList<>();
 
         rns.put(Aluno.class.getName(), rns_aluno);
         //rns.put(Disciplina.class.getName(), rns_disciplina);
         rns.put(Professor.class.getName(), rns_professor);
-        rns.put(Turma.class.getName(), rns_turma);
+        //rns.put(Turma.class.getName(), rns_turma);
     }
 
     private String processStrategys(EntidadeDominio entidade) {
