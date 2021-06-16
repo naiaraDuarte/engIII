@@ -73,21 +73,20 @@ public class EnderecoDAO implements IDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "UPDATE cursos SET logradouro=?, numero=?, cidade=?, estado=? WHERE id_endereco=?";
+        String sql = "UPDATE endereco SET logradouro=?, numero=?, cidade=?, estado=?, bairro=?, cep=? WHERE id_endereco=?";
 
         PreparedStatement stmt = null;
 
         if (entidade instanceof Endereco) {
             try {
-                stmt = conn.prepareStatement(sql);
+                stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, ((Endereco) entidade).getLogradouro());
                 stmt.setString(2, ((Endereco) entidade).getNumero());
                 stmt.setString(3, ((Endereco) entidade).getCidade());;
                 stmt.setString(4, ((Endereco) entidade).getEstado());
                 stmt.setString(5, ((Endereco) entidade).getBairro());
                 stmt.setString(6, ((Endereco) entidade).getCep());
-                stmt.setInt(7, 4);
-                stmt.setInt(5, entidade.getId());
+                stmt.setInt(7, entidade.getId());
 
                 if (stmt.executeUpdate() == 1) {
                     return true;

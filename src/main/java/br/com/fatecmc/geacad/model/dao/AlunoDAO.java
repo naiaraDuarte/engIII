@@ -76,6 +76,12 @@ public class AlunoDAO implements IDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
+        
+        EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
+        Endereco end = aluno.getEndereco();
+        enderecoDAO.alterar(end);
+        aluno.setEndereco(end);
+        
         try {
 
             String sql = "UPDATE aluno SET ra=?, cpf=?, telefone=?, data_nasc=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
