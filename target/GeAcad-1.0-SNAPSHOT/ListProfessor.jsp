@@ -8,21 +8,24 @@
     <table class="table table-hover display" id="minhatable">
         <thead class="thead" style="background-color: #e57373; color: white">
             <tr>
-                <th scope="col">Titulação</th>
-                <!--<th scope="col">ID</th>
+                
+                <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Titulação</th>
-                <th scope="col">Disciplina</th>
+                <th scope="col">Disciplina</th> 
                 <th scope="col">Telefone</th>
                 <th scope="col">CPF</th>
                 <th scope="col">Data de Nascimento</th>
-                <th scope="col">Sexo</th>-->
+                <th scope="col">Sexo</th>                
                 <th scope="col">Editar</th>
                 <th scope="col">Excluir</th>
             </tr>
         </thead>
     </table>
 </div> 
+<h:panelGrid columns="3">
+
+</h:panelGrid>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
