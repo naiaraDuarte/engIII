@@ -66,7 +66,6 @@ public class AlunoDAO implements IDAO {
     @Override
     public boolean alterar(EntidadeDominio entidade) {
         Aluno aluno = (Aluno) entidade;
-        int fk_endereco = 0;
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {

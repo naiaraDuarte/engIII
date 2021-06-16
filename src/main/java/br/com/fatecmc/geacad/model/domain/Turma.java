@@ -31,6 +31,7 @@ public class Turma extends EntidadeDominio {
     }
 
     public Turma(String nome, String ano, String periodo, int id_turma) {
+        super(id_turma);
         this.nome = nome;
         this.ano = ano;
         this.periodo = periodo;

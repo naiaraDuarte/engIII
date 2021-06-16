@@ -65,10 +65,10 @@ public class TurmaDAO implements IDAO {
         if(entidade instanceof Turma){
             try {
                 stmt = conn.prepareStatement(sql);
-                stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, ((Turma) entidade).getNome());
                 stmt.setString(2, ((Turma) entidade).getAno());                
                 stmt.setString(3, ((Turma) entidade).getPeriodo());
+                stmt.setInt(4, ((Turma) entidade).getId());
 
                 if(stmt.executeUpdate() == 1) return true;
             } catch (SQLException ex) {

@@ -15,38 +15,39 @@
     if (periodo == null) {
         periodo = "";
     }
-    if (id == null)
+    if (id == null) {
         id = "";
+    }
 %>
 <div class="conteudo">
     <div class="titulo">
         <h3> <i class="fas fa-angle-right"></i> Turma</h3>
     </div>
     <hr/>
-<form action="./Turma" method="post">
-    <div class="form-row">
+    <form action="./Turma" method="post">
+        <div class="form-row">
 
-        
+
             <div class="form-group col-md-6">
                 <label for="nome">Nome</label>
                 <input type="text" id="nome" name="nome" style="width: 20em" value="<%=nome%>">
             </div>
-        
-        
-        <div class="form-group col-md-6">
-            <label for="ano">Ano letivo</label>
-            <input type="text" id="ano" name="ano" style="width: 20em" value="<%=ano%>">
-        </div>
 
-        <div class="form-group col-md-6">
+
+            <div class="form-group col-md-6">
+                <label for="ano">Ano letivo</label>
+                <input type="text" id="ano" name="ano" style="width: 20em" value="<%=ano%>">
+            </div>
+
+            <div class="form-group col-md-6">
                 <label for="periodo">Periodo</label>
                 <input type="text" id="periodo" name="periodo" style="width: 20em" value="<%=periodo%>">
-        </div>
-        
+            </div>
+            <input type="hidden" id="id" name="id" value="<%=id%>">
 
-        <div class="form-row botao">
-            <button class="btn btn-primary" type="submit" name="operacao" value="<%= id == "" ? "SALVAR" : "ALTERAR"%>">Salvar</button>
+            <div class="form-row botao">
+                <button class="btn btn-primary" type="submit" name="operacao" value="<%= id == "" ? "SALVAR" : "ALTERAR"%>">Salvar</button>
+            </div>
         </div>
-    </div>
-</form>
-<%@include file="footer.jsp" %>
+    </form>
+    <%@include file="footer.jsp" %>

@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
-        <table class="table table-hover table-bordered display" id="minhatable">
-            <thead class="thead-dark">
+        <table class="table table-hover display" id="minhatable">
+            <thead class="thead" style="background-color: #e57373; color: white">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>

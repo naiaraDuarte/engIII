@@ -20,8 +20,9 @@ public class GeneratorJsonTurma implements IGeneratorJson {
                         + "\"" + t.getAno() + "\","
                         + "\"" + t.getPeriodo()+ "\","
                         + "\"<a href='/geacad/FormTurma.jsp"
-                        + "?descricao=" + t.getNome()
-                        + "&datainicio=" + t.getAno()
+                        + "?nome=" + t.getNome()
+                        + "&ano=" + t.getAno()
+                        + "&periodo=" + t.getPeriodo()
                         + "&id=" + t.getId()
                         + "'>Editar</a>\","
                         + "\"<a href='/geacad/Turma?operacao=EXCLUIR"
