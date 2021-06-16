@@ -32,7 +32,6 @@ public class EnderecoDAO implements IDAO {
         }
 
         String sql = "INSERT INTO endereco(logradouro, numero, cidade, estado, bairro, cep) VALUES(?, ?, ?, ?, ?, ?)";
-        
 
         PreparedStatement stmt = null;
 
@@ -47,7 +46,6 @@ public class EnderecoDAO implements IDAO {
                 stmt.setString(4, ((Endereco) entidade).getEstado());
                 stmt.setString(5, ((Endereco) entidade).getBairro());
                 stmt.setString(6, ((Endereco) entidade).getCep());
-                //stmt.setInt(7, 4);
 
                 stmt.executeUpdate();
 
@@ -164,14 +162,60 @@ public class EnderecoDAO implements IDAO {
         return null;
     }
 
- 
     public List consultarId(int id) {
+        return null;
+    }
+    
+    public Endereco consultarParaTeste(int id) {
         try {
             this.conn = ConnectionConstructor.getConnection();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "SELECT * FROM cursos WHERE id_curso=?";
+        String sql = "SELECT * FROM endereco WHERE id_endereco=?";
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        Endereco endereco = new Endereco();
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                //Endereco endereco = new Endereco();
+
+                endereco.setId(rs.getInt("id_endereco"));
+                endereco.setLogradouro(rs.getString("logradouro"));
+                endereco.setNumero(rs.getString("numero"));
+                endereco.setCidade(rs.getString("cidade"));
+                endereco.setEstado(rs.getString("estado"));
+                endereco.setBairro(rs.getString("bairro"));
+                endereco.setCep(rs.getString("cep"));
+
+                //enderecos.add(endereco);
+            }
+
+            return endereco;
+        } catch (SQLException ex) {
+            System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
+        } finally {
+            ConnectionConstructor.closeConnection(conn, stmt, rs);
+        }
+        return null;
+    }
+
+
+    @Override
+    public List<EntidadeDominio> consultar(EntidadeDominio entidade) {
+        try {
+            this.conn = ConnectionConstructor.getConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String sql = "SELECT * FROM endereco WHERE id_endereco=?";
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -179,7 +223,7 @@ public class EnderecoDAO implements IDAO {
         List<Endereco> enderecos = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(6, ((Endereco) entidade).getId());
 
             rs = stmt.executeQuery();
 
@@ -189,24 +233,21 @@ public class EnderecoDAO implements IDAO {
                 endereco.setId(rs.getInt("id_endereco"));
                 endereco.setLogradouro(rs.getString("logradouro"));
                 endereco.setNumero(rs.getString("numero"));
-                //endereco.setCidade(rs.getString("cidade"));
-                //endereco.setDuracao(rs.getInt("duracao"));
+                endereco.setCidade(rs.getString("cidade"));
+                endereco.setEstado(rs.getString("estado"));
+                endereco.setBairro(rs.getString("bairro"));
+                endereco.setCep(rs.getString("cep"));
 
                 enderecos.add(endereco);
             }
 
-            return enderecos;
+            //return enderecos;
         } catch (SQLException ex) {
             System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
         } finally {
             ConnectionConstructor.closeConnection(conn, stmt, rs);
         }
         return null;
-    }
-
-    @Override
-    public List<EntidadeDominio> consultar(EntidadeDominio arg0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -32,6 +32,12 @@ public class GeneratorJsonAluno implements IGeneratorJson {
                         + "&datanasc=" + a.getData_nascimento()
                         + "&sexo=" + a.getSexo()
                         + "&id=" + a.getId()
+                        + "&logradouro=" + a.getEndereco().getLogradouro()
+                        + "&numero=" + a.getEndereco().getNumero()
+                        + "&cidade=" + a.getEndereco().getCidade()
+                        + "&uf=" + a.getEndereco().getEstado()
+                        + "&bairro=" + a.getEndereco().getBairro()
+                        + "&cep=" + a.getEndereco().getCep()
                         + "&id_endereco=" + a.getEndereco().getId()
                         + "'>Editar</a>\","
                         + "\"<a href='/geacad/Aluno?operacao=EXCLUIR"

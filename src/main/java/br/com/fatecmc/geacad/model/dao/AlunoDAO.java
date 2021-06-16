@@ -25,7 +25,6 @@ public class AlunoDAO implements IDAO {
         PreparedStatement stmt = null;
 
         EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
-        Endereco endereco = new Endereco();
         Endereco end = aluno.getEndereco();
         end.setId(enderecoDAO.salvar(end));
         aluno.setEndereco(end);
@@ -75,17 +74,16 @@ public class AlunoDAO implements IDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        
         EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
         Endereco end = aluno.getEndereco();
         enderecoDAO.alterar(end);
         aluno.setEndereco(end);
-        
+
         try {
 
             String sql = "UPDATE aluno SET ra=?, cpf=?, telefone=?, data_nasc=?, sexo=?, fk_turma=?, fk_endereco=?, nome=? WHERE id_aluno=?";
             stmt = conn.prepareStatement(sql);
-            
+
             if (entidade instanceof Aluno) {
                 try {
                     Date convertedDate = new java.sql.Date(aluno.getData_nascimento().getTime());
@@ -164,7 +162,6 @@ public class AlunoDAO implements IDAO {
             while (rs.next()) {
                 Aluno aluno = new Aluno();
                 Turma turma = new Turma();
-                Endereco endereco = new Endereco();
 
                 aluno.setId(rs.getInt("id_aluno"));
                 aluno.setRa(rs.getString("ra"));
@@ -174,8 +171,12 @@ public class AlunoDAO implements IDAO {
                 aluno.setData_nascimento(rs.getDate("data_nasc"));
                 aluno.setSexo(rs.getString("sexo"));
 
-                endereco.setId(rs.getInt("fk_endereco"));
-                aluno.setEndereco(endereco);
+                EnderecoDAO enderecoDAO = new EnderecoDAO(conn);
+                Endereco end = aluno.getEndereco();
+                end = enderecoDAO.consultarParaTeste(rs.getInt("fk_endereco"));
+                aluno.setEndereco(end);
+
+                //aluno.setEndereco();
 
                 turma.setId(rs.getInt("fk_turma"));
 
