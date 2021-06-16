@@ -62,7 +62,7 @@ public class DisciplinaDAO implements IDAO {
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, ((Disciplina) entidade).getNome());
                 stmt.setInt(2, ((Disciplina) entidade).getCarga_horaria());
-                stmt.setInt(9, entidade.getId());
+                stmt.setInt(3, ((Disciplina) entidade).getId());
 
                 if(stmt.executeUpdate() == 1) return true;
             } catch (SQLException ex) {

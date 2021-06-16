@@ -11,6 +11,7 @@ public class Disciplina extends EntidadeDominio {
     }
 
     public Disciplina(String nome, int carga_hr, int id_disci) {
+        super(id_disci);
         this.nome = nome;
         this.carga_horaria = carga_hr;
     }

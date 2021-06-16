@@ -3,14 +3,15 @@
 
 <%
     String nome = request.getParameter("nome");
-    String cargahor = request.getParameter("cargah");
+    String cargah = request.getParameter("cargah");
+    //String cargah = request.getParameter("cargah");
     String id = request.getParameter("id");
 
     if (nome == null) {
         nome = "";
     }
-    if (cargahor == null) {
-        cargahor = "";
+    if (cargah == null) {
+        cargah = "";
     }
     
     if (id == null)
@@ -31,8 +32,9 @@
 
         <div class="form-group col-md-6">
             <label for="cargah">Carga Horária</label>
-            <input type="text" id="cargah" name="cargah" style="width: 20em" value="<%=cargahor%>">
+            <input type="text" id="cargah" name="cargah" style="width: 20em" value="<%=cargah%>">
         </div>
+        <input type="hidden" id="id" name="id" value="<%=id%>">
        
         <div class="form-row botao">
             <button class="btn btn-primary" type="submit" name="operacao" value="<%= id == "" ? "SALVAR" : "ALTERAR"%>">Salvar</button>
