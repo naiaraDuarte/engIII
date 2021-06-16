@@ -1,8 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
 
-<%
-    
+<%    
     String titulacao = request.getParameter("titulacao");
     String disciplina = request.getParameter("disciplina");
     String nome = request.getParameter("nome");
@@ -18,6 +17,7 @@
     String cidade = request.getParameter("cidade");
     String uf = request.getParameter("uf");
     String cep = request.getParameter("cep");
+    String id_endereco = request.getParameter("id_endereco");
 
     if (titulacao == null) {
         titulacao = "";
@@ -62,7 +62,7 @@
 %>
 
 <div class="conteudo">
-    QQ
+    
     <div class="titulo">
         <h3> <i class="fas fa-angle-right"></i> Professor</h3>
     </div>
@@ -118,7 +118,7 @@
                         Indefinido
                     </label>
                 </div>
-                <input type="hidden" id="id" name="id" value="<%=id%>">
+               
             </div>
         </div>
         <div class="titulo">
@@ -156,7 +156,8 @@
                 <input type="text" id="cep" class="form-control" name="cep" value="<%=cep%>">
             </div>
         </div>
-
+                <input type="hidden" id="id_endereco" name="id_endereco" value="<%=id_endereco%>">
+                <input type="hidden" id="id" name="id" value="<%=id%>">
 
         <div class="form-row botao">
             <button class="btn btn-primary" type="submit" name="operacao" value="<%= id == "" ? "SALVAR" : "ALTERAR"%>">Salvar</button>

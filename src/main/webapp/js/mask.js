@@ -3,5 +3,5 @@ $(document).ready(function(){
     
   $("#ra").inputmask("9999999999999");
   $("#telefone").inputmask("+99 99 99999-9999");
-  $("#cpf").inputmask("999.999.999-99");
+  $("#cpf").inputmask("99999999999");
 });
