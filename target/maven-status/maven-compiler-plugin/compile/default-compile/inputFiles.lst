@@ -13,6 +13,7 @@ C:\Users\Usuario\Documents\GitHub\engIII\src\main\java\br\com\fatecmc\geacad\mod
 C:\Users\Usuario\Documents\GitHub\engIII\src\main\java\br\com\fatecmc\geacad\control\command\AbstractCommand.java
 C:\Users\Usuario\Documents\GitHub\engIII\src\main\java\br\com\fatecmc\geacad\model\domain\Pessoa.java
 C:\Users\Usuario\Documents\GitHub\engIII\src\main\java\br\com\fatecmc\geacad\control\tablejson\GeneratorJsonAluno.java
+C:\Users\Usuario\Documents\GitHub\engIII\src\main\java\br\com\fatecmc\geacad\model\strategy\ValidarCadastroProfessor.java
 C:\Users\Usuario\Documents\GitHub\engIII\src\main\java\br\com\fatecmc\geacad\util\ConnectionConstructor.java
 C:\Users\Usuario\Documents\GitHub\engIII\src\main\java\br\com\fatecmc\geacad\control\tablejson\GeneratorJsonDisciplina.java
 C:\Users\Usuario\Documents\GitHub\engIII\src\main\java\br\com\fatecmc\geacad\control\command\AlterarCommand.java

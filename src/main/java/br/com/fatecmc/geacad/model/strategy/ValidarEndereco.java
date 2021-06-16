@@ -17,16 +17,16 @@ public class ValidarEndereco implements IStrategy {
             String cep = endereco.getCep();
 
             if (logradouro == null || cidade == null || estado == null || nr == null || cep == null) {
-                return "O endereço deve estar completo!";
+                return " O endereço deve estar completo!";
             } else if (logradouro.trim().equals("") || cidade.trim().equals("") || estado.trim().equals("")
                     || nr.trim().equals("")) {
-                return "O endereço deve estar completo!";
+                return " O endereço deve estar completo!";
             } else if (cep.length() != 8) {
-                return "CEP deve ser valido!";
+                return " CEP deve ser valido!";
             }
 
         } else {
-            return "Deve ser registrado um endereco!";
+            return " Deve ser registrado um endereco!";
         }
 
         return null;

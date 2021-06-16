@@ -28,36 +28,33 @@ public class Facade implements IFacade {
 
         ValidarExistencia validar_existencia = new ValidarExistencia();
         ValidarCpf validar_cpf = new ValidarCpf();
-        //ValidarCpf validar_cpf1 = new ValidarCpf();
         ValidarTurma validar_turma = new ValidarTurma();
-        //ValidarLimiteAlunosTurma validar_limite_alunos_turma = new ValidarLimiteAlunosTurma();
+        ValidarLimiteAlunosTurma validar_limite_alunos_turma = new ValidarLimiteAlunosTurma();
         ValidarMatriculaAluno validar_matricula_aluno = new ValidarMatriculaAluno();
         ValidarDisciplina validar_disciplina = new ValidarDisciplina();
-       
+        ValidarCadastroProfessor validar_professor = new ValidarCadastroProfessor();
+        
         List<IStrategy> rns_aluno = new ArrayList<>();
         rns_aluno.add(validar_turma);
         rns_aluno.add(validar_matricula_aluno);
         rns_aluno.add(validar_cpf);
         //rns_aluno.add(validar_existencia);
-        //rns_aluno.add(validar_limite_alunos_turma);
+        rns_aluno.add(validar_limite_alunos_turma);
         
-        
-        //rns.put(Aluno.class.getName(), rns_aluno);
-        
-
-        List<IStrategy> rns_disciplina = new ArrayList<>();
+        //List<IStrategy> rns_disciplina = new ArrayList<>();
         //rns_disciplina.add(validar_turma);
         //rns_disciplina.add(validar_disciplina);
 
         List<IStrategy> rns_professor = new ArrayList<>();
         rns_professor.add(validar_cpf);
+        rns_professor.add(validar_professor);
         //rns_professor.add(validar_existencia);
         rns_professor.add(validar_disciplina);
 
         List<IStrategy> rns_turma = new ArrayList<>();
 
         rns.put(Aluno.class.getName(), rns_aluno);
-        rns.put(Disciplina.class.getName(), rns_disciplina);
+        //rns.put(Disciplina.class.getName(), rns_disciplina);
         rns.put(Professor.class.getName(), rns_professor);
         rns.put(Turma.class.getName(), rns_turma);
     }
