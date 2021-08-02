@@ -21,7 +21,7 @@ public class ValidarEndereco implements IStrategy {
             } else if (logradouro.trim().equals("") || cidade.trim().equals("") || estado.trim().equals("")
                     || nr.trim().equals("")) {
                 return " O endereço deve estar completo!";
-            } else if (cep.length() != 8) {
+            } else if (cep.length() != 9) {
                 return " CEP deve ser valido!";
             }
 

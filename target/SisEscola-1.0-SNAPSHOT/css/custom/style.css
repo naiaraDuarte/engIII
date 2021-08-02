@@ -132,7 +132,7 @@ label #sidebar_btn:hover{
     margin-left: 250px;
     border: 2px solid #ddd;
     padding: 6% 0 0 0%;
-    height: 90vh;
+    height: 98vh !important;
 
 }
 .content .cadastro{

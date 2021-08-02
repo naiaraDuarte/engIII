@@ -95,8 +95,13 @@
                 <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Digite o telefone" value="<%=telefone%>">
             </div>
             <div class="form-group col-md-6">
-                <label for="disciplina">Disciplina </label>
-                <input type="text" id="disciplina" name="disciplina" class="form-control" placeholder="Digite a disciplina" value="<%=disciplina%>">
+                <label for="id_turma">Disciplina </label>
+                <select class="input" id="disciplina" name="disciplina" style="width: 99%;height: 4.5vh;">
+                    <option value="">Selecione...</option>
+                    <option value="1">Química</option>
+                    <option value="2">Física</option>
+                    <option value="3">Matemática</option>
+                </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="ra">Sexo: </label>

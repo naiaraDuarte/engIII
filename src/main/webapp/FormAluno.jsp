@@ -18,6 +18,7 @@
     String uf = request.getParameter("uf");
     String cep = request.getParameter("cep");
     String id_endereco = request.getParameter("id_endereco");
+    String erro = request.getParameter("erro");
 
     if (ra == null) {
         ra = "";
@@ -58,6 +59,9 @@
     if (cep == null) {
         cep = "";
     }
+    if (erro == null) {
+        erro = "";
+    }
 
 
 %>
@@ -66,7 +70,7 @@
         <h3> <i class="fas fa-angle-right"></i> Aluno</h3>
     </div>
     <hr/>
-
+    <span><%=erro%></span>
     <form action="./Aluno" method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -94,27 +98,15 @@
                 <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Digite o telefone" value="<%=telefone%>">
             </div>
             <div class="form-group col-md-6">
-                <label for="turma">Turma </label>
-                <input type="text" id="turma" name="turma" class="form-control" placeholder="Digite a turma" value="<%=turma%>">
-            </div>
-            <!-- SELECT COISADO -->
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="id_turma">Turma: </label>
-                    <select class="input" id="id_turma" name="id_turma">
-                        <option value="<%=turma%>">Nome da Turma</option>
-                    </select>
-                </div>
-            </div>
-            <input type="hidden" id="id" name="id" value="<%=id%>">
-            <!-- SELECT COISADO -->
-            <div class="form-group">
-                <label for="exampleFormControlSelect1" >Turma</label>
-                <select class="form-control" name="turma" id="exampleFormControlSelect1">
-                    <option value="<%=turma%>"></option>
+                <label for="turma">Turma: </label>
+                <select class="input" id="turma" name="turma" style="width: 99%;height: 4.5vh;">
+                    <option value="">Selecione...</option>
+                    <option value="1">1°A</option>
+                    <option value="2">1°B</option>
+                    <option value="3">1°C</option>
                 </select>
             </div>
-            <!-- SELECT COISADO --> 
+            <input type="hidden" id="id" name="id" value="<%=id%>">
             <div class="form-group col-md-6">
                 <label for="ra">Sexo: </label>
                 <div class="custom-control custom-radio custom-control-inline">
